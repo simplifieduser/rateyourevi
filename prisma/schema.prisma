@@ -10,3 +10,50 @@ datasource db {
   url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
+
+model MaleStudent {
+  id        Int    @id @default(autoincrement())
+  fullName  String
+  firstName String
+  lastName  String
+
+  totalVotes Int
+  votedUsers User[]
+}
+
+model FemaleStudent {
+  id        Int    @id @default(autoincrement())
+  fullName  String
+  firstName String
+  lastName  String
+
+  totalVotes Int
+  votedUsers User[]
+}
+
+model User {
+  id         Int    @id @default(autoincrement())
+  name       String
+  accessCode String    @unique
+
+  hasVoted          Boolean
+  userVotedMale     MaleStudent?   @relation(fields: [userVotedMaleId], references: [id])
+  userVotedMaleId   Int?           @unique
+  userVotedFemale   FemaleStudent? @relation(fields: [userVotedFemaleId], references: [id])
+  userVotedFemaleId Int?           @unique
+
+  songRequests SongRequest[]
+}
+
+model SongRequest {
+  id         Int    @id @default(autoincrement())
+  songId     String @unique
+  songName   String
+  songArtist String
+  songAlbum  String
+  songUri    String
+
+  totalVotes    Int
+  requestUser   User @relation(fields: [requestUserId], references: [id])
+  requestUserId Int  @unique
+}
