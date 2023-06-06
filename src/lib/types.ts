@@ -1,4 +1,13 @@
-import type { FemaleStudent, MaleStudent } from "@prisma/client"
+import type { FemaleStudent, MaleStudent, User } from "@prisma/client"
+
+export type Student = {
+  id: number,
+  fullName: string,
+  firstName: string,
+  lastName: string,
+  totalVotes: number,
+  votedUsers: User
+}
 
 export type ServerResponse<T> = Promise<
 | { success: true, data: T }
@@ -20,4 +29,11 @@ export type RootLoad = {
 export type LoginAction = {
   redirect: string,
   userName: string
+}
+
+export type RatingLoad =
+| {
+  page: number,
+  queryType: "all" | "maleOnly" | "femaleOnly",
+  students: Student[]
 }
