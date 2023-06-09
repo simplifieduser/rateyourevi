@@ -15,8 +15,8 @@ export type ServerResponse<T> = Promise<
 
 export type ServerLoadError =
 
-| { reason: "missing", field: string }
-| { reason: "invalid", field: string, details: string }
+| { reason: "missing", fields: string[] }
+| { reason: "invalid", fields: { field: string, details: string }[] }
 | { reason: "unauthorized", details?: string }
 | { reason: "notFound", details?: string }
 | { reason: "internalError", details?: string }
@@ -34,6 +34,14 @@ export type LoginAction = {
 export type RatingLoad =
 | {
   page: number,
-  queryType: "all" | "maleOnly" | "femaleOnly",
+  queryType: StudentQueryType,
   students: Student[]
 }
+
+export type RatingVoteLoad = {}
+
+export type RatingVoteMaleSearch = { results: MaleStudent[] }
+
+export type RatingVoteFemaleSearch = { results: FemaleStudent[] }
+
+export type StudentQueryType = "all" | "maleOnly" | "femaleOnly"
