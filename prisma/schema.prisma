@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
@@ -19,6 +20,8 @@ model MaleStudent {
 
   totalVotes Int
   votedUsers User[]
+
+  @@fulltext(fields: [fullName]) 
 }
 
 model FemaleStudent {
@@ -29,6 +32,8 @@ model FemaleStudent {
 
   totalVotes Int
   votedUsers User[]
+
+  @@fulltext(fields: [fullName]) 
 }
 
 model User {
