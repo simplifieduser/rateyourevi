@@ -14,6 +14,7 @@
 		"@sveltejs/kit": "^1.5.0",
 		"@types/auth0": "^3.3.3",
 		"@types/auth0-js": "^9.14.7",
+		"@types/node": "^20.2.6",
 		"prisma": "^4.15.0",
 		"svelte": "^3.54.0",
 		"svelte-check": "^3.0.1",
@@ -27,5 +28,8 @@
 		"@prisma/client": "^4.15.0",
 		"auth0": "^3.4.0",
 		"auth0-js": "^9.21.0"
+	},
+	"prisma": {
+		"seed": "node ./prisma/seed.js"
 	}
 }
