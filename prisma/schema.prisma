@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
@@ -21,7 +21,7 @@ model MaleStudent {
   totalVotes Int
   votedUsers User[]
 
-  @@fulltext(fields: [fullName]) 
+  @@fulltext(fields: [fullName])
 }
 
 model FemaleStudent {
@@ -33,13 +33,13 @@ model FemaleStudent {
   totalVotes Int
   votedUsers User[]
 
-  @@fulltext(fields: [fullName]) 
+  @@fulltext(fields: [fullName])
 }
 
 model User {
-  id         Int    @id @default(autoincrement())
-  name       String
-  accessCode String    @unique
+  id   Int    @id @default(autoincrement())
+  name String
+  sub  String @unique
 
   hasVoted          Boolean
   userVotedMale     MaleStudent?   @relation(fields: [userVotedMaleId], references: [id])
