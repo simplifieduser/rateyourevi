@@ -18,6 +18,9 @@ export const load = (async (): ServerResponse<RootLoad> => {
         }
     }
     catch (error) {
+
+        console.error(error)
+
         return {
             success: false,
             error: { reason: "internalError" }
