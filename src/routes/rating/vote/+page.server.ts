@@ -1,13 +1,33 @@
 import prisma from '$lib/server/prisma.js'
-import type { RatingVoteFemaleSearch, RatingVoteLoad, RatingVoteMaleSearch, ServerResponse, Student } from '$lib/types.js'
+import type { Auth0User, RatingVoteFemaleSearch, RatingVoteLoad, RatingVoteMaleSearch, RatingVoteSubmit, ServerResponse, Student } from '$lib/types.js'
+import auth0 from '$lib/server/auth0.js'
 
 
 export const load = async ({ cookies }): ServerResponse<RatingVoteLoad> => {
 
-  const codeString = cookies.get("code")
-  if (!codeString) return { success: false, error: { reason: "unauthorized" } }
+  const token = cookies.get("token")
+  if (!token) return { success: false, error: { reason: "unauthorized" } }
 
-  return { success: true, data: {} }
+  try {
+    const auth0User = await auth0.getProfile(token) as Auth0User
+    let dbUser = await prisma.user.findUnique({ where: { sub: auth0User.sub } })
+
+    if (!dbUser) {
+      dbUser = await prisma.user.create({ data: {
+        sub: auth0User.sub,
+        name: auth0User.name,
+        hasVoted: false }
+      })
+    }
+
+    if (dbUser.hasVoted) return { success: false, error: { reason: "forbidden", details: "already voted" } }
+    
+    return { success: true, data: {} }
+
+  }
+  catch (error) {
+    return { success: false, error: { reason: "unauthorized" } }
+  }
 
 }
 
@@ -42,14 +62,14 @@ export const actions = {
     try {
 
       const data = await request.formData()
-      const femaleQuery = data.get("m")
+      const femaleQuery = data.get("f")
 
-      if (!femaleQuery || femaleQuery.toString().length) return { success: false, error: { reason: "missing", fields: ["m"] } }
-      if (femaleQuery.toString().length < 3) return { success: false, error: { reason: "invalid", fields: [{ field: "m", details: "too short" }] } }
+      if (!femaleQuery || femaleQuery.toString().length < 1) return { success: false, error: { reason: "missing", fields: ["f"] } }
+      if (femaleQuery.toString().length < 3) return { success: false, error: { reason: "invalid", fields: [{ field: "f", details: "too short" }] } }
 
       const searchQuery = "*" + femaleQuery.toString() + "*"
-
-      const femaleResult = await prisma.maleStudent.findMany({ where: { fullName: { search: searchQuery } } })
+      const femaleResult = await prisma.femaleStudent.findMany({ where: { fullName: { search: searchQuery } } })
+      
       return { success: true, data: { results: femaleResult } }
 
     } catch (error) {
@@ -61,10 +81,42 @@ export const actions = {
 
   },
 
-  vote: async () => {
+  submit: async ({ request, cookies }): ServerResponse<RatingVoteSubmit> => {
 
+    const token = cookies.get("token")
+    if (!token) return { success: false, error: { reason: "unauthorized" } }
 
+    const data = await request.formData()
+
+    const maleIdString = data.get("m-id")
+    const femaleIdString = data.get("f-id")
+
+    if (!maleIdString || !femaleIdString) return { success: false, error: { reason: "missing", fields: [ "m-id", "f-id" ] } }
+    
+    const maleId = parseInt(maleIdString.toString())
+    const femaleId = parseInt(femaleIdString.toString())
+
+    if (Number.isNaN(maleId) || Number.isNaN(femaleId)) return { success: false, error: { reason: "invalid", fields: [{ field: "m-id", details: "not a number" }, { field: "f-id", details: "not a number" }] } }
+
+    try {
+      const auth0User = await auth0.getProfile(token) as Auth0User
+      let dbUser = await prisma.user.findUnique({ where: { sub: auth0User.sub } })
+
+      if (!dbUser) return { success: false, error: { reason: "unauthorized" } }
+      if (dbUser.hasVoted) return { success: false, error: { reason: "forbidden", details: "already voted" } }
+      
+      await prisma.user.update({ where: { sub: auth0User.sub }, data: {
+        hasVoted: true,
+        userVotedMaleId: maleId,
+        userVotedFemaleId: femaleId
+      } })
+
+      return { success: true, data: {} }
+  
+    }
+    catch (error) {
+      return { success: false, error: { reason: "unauthorized" } }
+    }
 
   }
-
 }
