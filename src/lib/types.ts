@@ -18,6 +18,7 @@ export type ServerLoadError =
 | { reason: "missing", fields: string[] }
 | { reason: "invalid", fields: { field: string, details: string }[] }
 | { reason: "unauthorized", details?: string }
+| { reason: "forbidden", details?: string }
 | { reason: "notFound", details?: string }
 | { reason: "internalError", details?: string }
 
