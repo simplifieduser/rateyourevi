@@ -14,24 +14,27 @@
 
     client.parseHash((error, result) => {
 
-      const redirectUrl = $page.url.searchParams.get("r") || "/"
+      const redirectUrl = $page.url.searchParams.get("redirect") || "/"
 
       if (document.cookie.includes("token")) {
         goto(redirectUrl)
         return
       }
+      
 
       if (error || !result) {
         client.authorize({ 
-          redirectUri: `http://localhost:5173/login/r=${redirectUrl}`,
-          responseType: "token" 
+          redirectUri: `http://localhost:5173/login/`,
+          responseType: "token",
+          appState: redirectUrl
         })
         return
       }
 
       document.cookie = `token=${result.accessToken}; expires=${result.expiresIn}; path="/"`
 
-      goto(redirectUrl)  
+      if (typeof result.appState === "string") goto(result.appState)
+      else goto("/")
 
     })
 
