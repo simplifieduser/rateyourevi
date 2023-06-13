@@ -45,4 +45,12 @@ export type RatingVoteMaleSearch = { results: MaleStudent[] }
 
 export type RatingVoteFemaleSearch = { results: FemaleStudent[] }
 
+export type RatingVoteSubmit = {}
+
 export type StudentQueryType = "all" | "maleOnly" | "femaleOnly"
+
+export type Auth0User = {
+  sub: string
+  name: string
+  email: string
+}
