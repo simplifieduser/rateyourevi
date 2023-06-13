@@ -1,7 +1,6 @@
 <script lang="ts">
-  import { page } from "$app/stores";
   import { WebAuth } from "auth0-js";
-  import { onMount } from "svelte";deprecated
+  import { onMount } from "svelte";
 
   onMount(() => {
 
@@ -10,11 +9,10 @@
       clientID: "LlKXTOza5PVGlWoe2EVqrmv207WwTZTp",
     })
 
-    const redirectUrl = $page.url.searchParams.get("r") || "/"
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
 
     client.logout({
-      returnTo: redirectUrl
+      returnTo: `http://localhost:5173/`,
     })
 
   })
