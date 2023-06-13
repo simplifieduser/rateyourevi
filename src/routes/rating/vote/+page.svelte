@@ -157,3 +157,26 @@
   
 
 </main>
+
+<style>
+
+  .cards {
+
+    display: flex;
+    gap: 50px;
+    margin-bottom: 50px;
+
+  }
+
+  .results {
+    margin-top: 10px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+</style>
