@@ -121,6 +121,7 @@ export const actions = ({
         
       }
       catch (error) {
+        console.log(error)
         return { success: false, error: { reason: "internalError" } }
       }
   
