@@ -1,0 +1,586 @@
+{
+  "maleStudents": [
+    {
+      "fullName": "Jonas Braun",
+      "firstName": "Jonas",
+      "lastName": "Braun"
+    },
+    {
+      "fullName": "Kilian Siegfried Baudis",
+      "firstName": "Kilian",
+      "lastName": "Baudis"
+    },
+    {
+      "fullName": "Nicolas Robert Covic",
+      "firstName": "Nicolas",
+      "lastName": "Covic"
+    },
+    {
+      "fullName": "Florian Domke",
+      "firstName": "Florian",
+      "lastName": "Domke"
+    },
+    {
+      "fullName": "Onno Thorben Feldtmann",
+      "firstName": "Onno",
+      "lastName": "Feldtmann"
+    },
+    {
+      "fullName": "Samuel Frenzel",
+      "firstName": "Samuel",
+      "lastName": "Frenzel"
+    },
+    {
+      "fullName": "Theo Frömer",
+      "firstName": "Theo",
+      "lastName": "Frömer"
+    },
+    {
+      "fullName": "Ole Förster",
+      "firstName": "Ole",
+      "lastName": "Förster"
+    },
+    {
+      "fullName": "Vlad Nicolae Cheibas",
+      "firstName": "Vlad",
+      "lastName": "Cheibas"
+    },
+    {
+      "fullName": "Quint Hauptmann",
+      "firstName": "Quint",
+      "lastName": "Hauptmann"
+    },
+    {
+      "fullName": "Janek Haschke",
+      "firstName": "Janek",
+      "lastName": "Haschke"
+    },
+    {
+      "fullName": "Franz Hopf",
+      "firstName": "Franz",
+      "lastName": "Hopf"
+    },
+    {
+      "fullName": "Erik Hochmuth",
+      "firstName": "Erik",
+      "lastName": "Hochmuth"
+    },
+    {
+      "fullName": "Emil Hopf",
+      "firstName": "Emil",
+      "lastName": "Hopf"
+    },
+    {
+      "fullName": "Jurek Janda",
+      "firstName": "Jurek",
+      "lastName": "Janda"
+    },
+    {
+      "fullName": "Henning Karbe",
+      "firstName": "Henning",
+      "lastName": "Karbe"
+    },
+    {
+      "fullName": "Martin Kiehns",
+      "firstName": "Martin",
+      "lastName": "Kiehns"
+    },
+    {
+      "fullName": "Leon Kliem",
+      "firstName": "Leon",
+      "lastName": "Kliem"
+    },
+    {
+      "fullName": "Morteza Gholami",
+      "firstName": "Morteza",
+      "lastName": "Gholami"
+    },
+    {
+      "fullName": "Jonathan Kufeld",
+      "firstName": "Jonathan",
+      "lastName": "Kufeld"
+    },
+    {
+      "fullName": "Gregor Gottschall",
+      "firstName": "Gregor",
+      "lastName": "Gottschall"
+    },
+    {
+      "fullName": "Malte Kruppa",
+      "firstName": "Malte",
+      "lastName": "Kruppa"
+    },
+    {
+      "fullName": "Theodor Augustin Leiniger",
+      "firstName": "Theodor",
+      "lastName": "Leiniger"
+    },
+    {
+      "fullName": "Julian Lexow",
+      "firstName": "Julian",
+      "lastName": "Lexow"
+    },
+    {
+      "fullName": "Frieder Ole Lüdecke",
+      "firstName": "Frieder",
+      "lastName": "Lüdecke"
+    },
+    {
+      "fullName": "Mika Maas",
+      "firstName": "Mika",
+      "lastName": "Maas"
+    },
+    {
+      "fullName": "Johannes Manke",
+      "firstName": "Johannes",
+      "lastName": "Manke"
+    },
+    {
+      "fullName": "Jean Pierre Matton",
+      "firstName": "Jean",
+      "lastName": "Matton"
+    },
+    {
+      "fullName": "Elias Miksch",
+      "firstName": "Elias",
+      "lastName": "Miksch"
+    },
+    {
+      "fullName": "Milan Emanuel Nelles",
+      "firstName": "Milan",
+      "lastName": "Nelles"
+    },
+    {
+      "fullName": "Mika Tim Müller",
+      "firstName": "Mika",
+      "lastName": "Müller"
+    },
+    {
+      "fullName": "Julian Ploch",
+      "firstName": "Julian",
+      "lastName": "Ploch"
+    },
+    {
+      "fullName": "Noah Prüfer",
+      "firstName": "Noah",
+      "lastName": "Prüfer"
+    },
+    {
+      "fullName": "Arthur Nürnberg",
+      "firstName": "Arthur",
+      "lastName": "Nürnberg"
+    },
+    {
+      "fullName": "Felix Knafla",
+      "firstName": "Felix",
+      "lastName": "Knafla"
+    },
+    {
+      "fullName": "Florian Redlof",
+      "firstName": "Florian",
+      "lastName": "Redlof"
+    },
+    {
+      "fullName": "Maximilian Roscher",
+      "firstName": "Maximilian",
+      "lastName": "Roscher"
+    },
+    {
+      "fullName": "Jonathan Roßow",
+      "firstName": "Jonathan",
+      "lastName": "Roßow"
+    },
+    {
+      "fullName": "Willy Rybak",
+      "firstName": "Willy",
+      "lastName": "Rybak"
+    },
+    {
+      "fullName": "Felix Schult",
+      "firstName": "Felix",
+      "lastName": "Schult"
+    },
+    {
+      "fullName": "Emil Schmidt",
+      "firstName": "Emil",
+      "lastName": "Schmidt"
+    },
+    {
+      "fullName": "Till Scheider",
+      "firstName": "Till",
+      "lastName": "Scheider"
+    },
+    {
+      "fullName": "Albert Schmidt",
+      "firstName": "Albert",
+      "lastName": "Schmidt"
+    },
+    {
+      "fullName": "Tobias Schulz",
+      "firstName": "Tobias",
+      "lastName": "Schulz"
+    },
+    {
+      "fullName": "Naza Shinwary",
+      "firstName": "Naza",
+      "lastName": "Shinwary"
+    },
+    {
+      "fullName": "Serdar Turgut",
+      "firstName": "Serdar",
+      "lastName": "Turgut"
+    },
+    {
+      "fullName": "Janek Trunte",
+      "firstName": "Janek",
+      "lastName": "Trunte"
+    },
+    {
+      "fullName": "Jannik Vogel",
+      "firstName": "Jannik",
+      "lastName": "Vogel"
+    },
+    {
+      "fullName": "Leon Stamer",
+      "firstName": "Leon",
+      "lastName": "Stamer"
+    },
+    {
+      "fullName": "Oscar Wolff",
+      "firstName": "Oscar",
+      "lastName": "Wolff"
+    },
+    {
+      "fullName": "Oliver Wittemanns",
+      "firstName": "Oliver",
+      "lastName": "Wittemanns"
+    },
+    {
+      "fullName": "Benedikt Wright",
+      "firstName": "Benedikt",
+      "lastName": "Wright"
+    },
+    {
+      "fullName": "Jonah Carl Zabel",
+      "firstName": "Jonah",
+      "lastName": "Zabel"
+    },
+    {
+      "fullName": "Bastian Plöse",
+      "firstName": "Bastian",
+      "lastName": "Plöse"
+    },
+    {
+      "fullName": "Oliver Sayferth",
+      "firstName": "Oliver",
+      "lastName": "Sayferth"
+    }
+  ],
+  "femaleStudents": [
+    {
+      "fullName": "Leanne Adermann",
+      "firstName": "Leanne",
+      "lastName": "Adermann"
+    },
+    {
+      "fullName": "Maja Amberg",
+      "firstName": "Maja",
+      "lastName": "Amberg"
+    },
+    {
+      "fullName": "Lia Marie Brosche",
+      "firstName": "Lia",
+      "lastName": "Brosche"
+    },
+    {
+      "fullName": "Leoni Albrecht",
+      "firstName": "Leoni",
+      "lastName": "Albrecht"
+    },
+    {
+      "fullName": "Annika Bachen",
+      "firstName": "Annika",
+      "lastName": "Bachen"
+    },
+    {
+      "fullName": "Mia Jolina Drews",
+      "firstName": "Mia",
+      "lastName": "Drews"
+    },
+    {
+      "fullName": "Enya Fielitz",
+      "firstName": "Enya",
+      "lastName": "Fielitz"
+    },
+    {
+      "fullName": "Lotta Marie Forschner",
+      "firstName": "Lotta",
+      "lastName": "Forschner"
+    },
+    {
+      "fullName": "Hanna Fischer",
+      "firstName": "Hanna",
+      "lastName": "Fischer"
+    },
+    {
+      "fullName": "Charlotte Sara Brandies",
+      "firstName": "Charlotte",
+      "lastName": "Brandies"
+    },
+    {
+      "fullName": "Stella Sophie Fröhlich",
+      "firstName": "Stella",
+      "lastName": "Fröhlich"
+    },
+    {
+      "fullName": "Lucie Garbe",
+      "firstName": "Lucie",
+      "lastName": "Garbe"
+    },
+    {
+      "fullName": "Mira Lysienne Gorgas",
+      "firstName": "Mira",
+      "lastName": "Gorgas"
+    },
+    {
+      "fullName": "Finja Burghardt",
+      "firstName": "Finja",
+      "lastName": "Burghardt"
+    },
+    {
+      "fullName": "Emilia De Laak",
+      "firstName": "Emilia",
+      "lastName": "De Laak"
+    },
+    {
+      "fullName": "Betty Gärtner",
+      "firstName": "Betty",
+      "lastName": "Gärtner"
+    },
+    {
+      "fullName": "Helena Gülde",
+      "firstName": "Helena",
+      "lastName": "Gülde"
+    },
+    {
+      "fullName": "Elisabeth Götze",
+      "firstName": "Elisabeth",
+      "lastName": "Götze"
+    },
+    {
+      "fullName": "Marielle Hannaleck",
+      "firstName": "Marielle",
+      "lastName": "Hannaleck"
+    },
+    {
+      "fullName": "Clara Grundmann",
+      "firstName": "Clara",
+      "lastName": "Grundmann"
+    },
+    {
+      "fullName": "Romy Hansel",
+      "firstName": "Romy",
+      "lastName": "Hansel"
+    },
+    {
+      "fullName": "Anne&nbsp;Marie Heidrich",
+      "firstName": "Anne&nbsp;Marie",
+      "lastName": "Heidrich"
+    },
+    {
+      "fullName": "Cheyenne Horvath",
+      "firstName": "Cheyenne",
+      "lastName": "Horvath"
+    },
+    {
+      "fullName": "Helena Brahm",
+      "firstName": "Helena",
+      "lastName": "Brahm"
+    },
+    {
+      "fullName": "Isabell Kaufmann",
+      "firstName": "Isabell",
+      "lastName": "Kaufmann"
+    },
+    {
+      "fullName": "Maren Jonas",
+      "firstName": "Maren",
+      "lastName": "Jonas"
+    },
+    {
+      "fullName": "Ruth Elisa Freye",
+      "firstName": "Ruth",
+      "lastName": "Freye"
+    },
+    {
+      "fullName": "Leni Lotte Klakow",
+      "firstName": "Leni",
+      "lastName": "Klakow"
+    },
+    {
+      "fullName": "Franziska Gross",
+      "firstName": "Franziska",
+      "lastName": "Gross"
+    },
+    {
+      "fullName": "Pauline Koch",
+      "firstName": "Pauline",
+      "lastName": "Koch"
+    },
+    {
+      "fullName": "Helena Krieger",
+      "firstName": "Helena",
+      "lastName": "Krieger"
+    },
+    {
+      "fullName": "Amelie Krumhoff",
+      "firstName": "Amelie",
+      "lastName": "Krumhoff"
+    },
+    {
+      "fullName": "Marika Laws",
+      "firstName": "Marika",
+      "lastName": "Laws"
+    },
+    {
+      "fullName": "Vanessa Leifert",
+      "firstName": "Vanessa",
+      "lastName": "Leifert"
+    },
+    {
+      "fullName": "Johanna Liebchen",
+      "firstName": "Johanna",
+      "lastName": "Liebchen"
+    },
+    {
+      "fullName": "Leah Mallok",
+      "firstName": "Leah",
+      "lastName": "Mallok"
+    },
+    {
+      "fullName": "Yella Meyer zu Hücker",
+      "firstName": "Yella",
+      "lastName": "Meyer zu Hücker"
+    },
+    {
+      "fullName": "Annalena Messow",
+      "firstName": "Annalena",
+      "lastName": "Messow"
+    },
+    {
+      "fullName": "Finja Moehrcke",
+      "firstName": "Finja",
+      "lastName": "Moehrcke"
+    },
+    {
+      "fullName": "Caroline Neumann",
+      "firstName": "Caroline",
+      "lastName": "Neumann"
+    },
+    {
+      "fullName": "Helena Peters",
+      "firstName": "Helena",
+      "lastName": "Peters"
+    },
+    {
+      "fullName": "Marie Otto",
+      "firstName": "Marie",
+      "lastName": "Otto"
+    },
+    {
+      "fullName": "Mia Kehler",
+      "firstName": "Mia",
+      "lastName": "Kehler"
+    },
+    {
+      "fullName": "Luisa Nitsche",
+      "firstName": "Luisa",
+      "lastName": "Nitsche"
+    },
+    {
+      "fullName": "Mila Neumann",
+      "firstName": "Mila",
+      "lastName": "Neumann"
+    },
+    {
+      "fullName": "Hermine Kuhla",
+      "firstName": "Hermine",
+      "lastName": "Kuhla"
+    },
+    {
+      "fullName": "Amelie Krause",
+      "firstName": "Amelie",
+      "lastName": "Krause"
+    },
+    {
+      "fullName": "Ronja Tabea Schilcher",
+      "firstName": "Ronja",
+      "lastName": "Schilcher"
+    },
+    {
+      "fullName": "Alicia Schenk",
+      "firstName": "Alicia",
+      "lastName": "Schenk"
+    },
+    {
+      "fullName": "Pia Josephine Schröter",
+      "firstName": "Pia",
+      "lastName": "Schröter"
+    },
+    {
+      "fullName": "Mimi Isabel Schramm",
+      "firstName": "Mimi",
+      "lastName": "Schramm"
+    },
+    {
+      "fullName": "Amelie-Sophie Schumann",
+      "firstName": "Amelie-Sophie",
+      "lastName": "Schumann"
+    },
+    {
+      "fullName": "Loana Semrau",
+      "firstName": "Loana",
+      "lastName": "Semrau"
+    },
+    {
+      "fullName": "Lea Strohm",
+      "firstName": "Lea",
+      "lastName": "Strohm"
+    },
+    {
+      "fullName": "Annalena Sperl",
+      "firstName": "Annalena",
+      "lastName": "Sperl"
+    },
+    {
+      "fullName": "Antonia Terfort",
+      "firstName": "Antonia",
+      "lastName": "Terfort"
+    },
+    {
+      "fullName": "Helena Sturtz",
+      "firstName": "Helena",
+      "lastName": "Sturtz"
+    },
+    {
+      "fullName": "Maja Späth",
+      "firstName": "Maja",
+      "lastName": "Späth"
+    },
+    {
+      "fullName": "Dena Weiß",
+      "firstName": "Dena",
+      "lastName": "Weiß"
+    },
+    {
+      "fullName": "Clara Riese",
+      "firstName": "Clara",
+      "lastName": "Riese"
+    },
+    {
+      "fullName": "Chiara Rabeneck",
+      "firstName": "Chiara",
+      "lastName": "Rabeneck"
+    }
+  ]
+}

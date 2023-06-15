@@ -1,2 +1,44 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+  import { onMount } from "svelte";
+  import type { PageData } from "./$types";
+
+  export let data: PageData
+
+  onMount(() => {
+    console.log(data)
+  })
+
+</script>
+
+<main>
+  
+  {#if data.success}
+
+  <h2>King</h2>
+  <ol>
+    {#each data.data.male as student}
+      <li>{student.fullName}</li>
+    {/each}
+  </ol>
+
+  <h2>Queen</h2>
+  <ol>
+    {#each data.data.female as student}
+      <li>{student.fullName}</li>
+    {/each}
+  </ol>
+
+  <h2>Songs</h2>
+  <ol>
+    {#each data.data.songs as song}
+      <li>{song.songName}</li>
+    {/each}
+  </ol>
+
+  {:else}
+
+    Es ist ein Fehler aufgetreten.
+
+  {/if}
+
+</main>
