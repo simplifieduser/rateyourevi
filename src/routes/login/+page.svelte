@@ -14,6 +14,7 @@
     client.parseHash((error, result) => {
 
       const redirectUrl = $page.url.searchParams.get("redirect") || "/"
+      const currentUrl = $page.url.origin + "/login/"
 
       if (document.cookie.includes("token")) {
         goto(redirectUrl)
@@ -24,7 +25,7 @@
       if (error || !result) {
         client.authorize({
           connection: "google-oauth2",
-          redirectUri: `http://localhost:5173/login/`,
+          redirectUri: currentUrl,
           responseType: "token",
           appState: redirectUrl
         })

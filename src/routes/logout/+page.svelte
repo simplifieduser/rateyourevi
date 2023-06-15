@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { page } from "$app/stores";
   import { WebAuth } from "auth0-js";
   import { onMount } from "svelte";
 
@@ -10,9 +11,10 @@
     })
 
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+    const currentUrl = $page.url.origin + "/"
 
     client.logout({
-      returnTo: `http://localhost:5173/`,
+      returnTo: currentUrl,
     })
 
   })
