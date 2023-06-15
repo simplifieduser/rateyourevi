@@ -24,7 +24,8 @@ export type ServerLoadError =
 
 export type RootLoad = {
   male: MaleStudent[],
-  female: FemaleStudent[]
+  female: FemaleStudent[],
+  songs: SongRequest[]
 }
 
 export type LoginAction = {
@@ -51,6 +52,13 @@ export type SongsLoad = {
   page: number
   songs: SongRequest[]
 }
+
+export type SongsAdminLoad = {
+  page: number
+  songs: SongRequest[]
+}
+
+export type SongsAdminRemove = {}
 
 export type SongsVote = {}
 
