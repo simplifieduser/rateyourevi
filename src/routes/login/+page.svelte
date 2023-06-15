@@ -4,7 +4,6 @@
   import { WebAuth } from "auth0-js";
   import { onMount } from "svelte";
 
-
   onMount(() => {
 
     const client = new WebAuth({
@@ -23,7 +22,8 @@
       
 
       if (error || !result) {
-        client.authorize({ 
+        client.authorize({
+          connection: "google-oauth2",
           redirectUri: `http://localhost:5173/login/`,
           responseType: "token",
           appState: redirectUrl
