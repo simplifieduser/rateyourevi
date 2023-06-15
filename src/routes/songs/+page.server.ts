@@ -30,7 +30,7 @@ export const actions = ({
 
     const data = await request.formData()
     const songIdString = data.get("s")
-    if (!songIdString) return { success: false, error: { reason: "missing", fields: ["s"] } }
+    if (!songIdString ||songIdString.toString().trim().length < 1) return { success: false, error: { reason: "missing", fields: ["s"] } }
 
     const songId = parseInt(songIdString.toString())
     if (Number.isNaN(songId)) return { success: false, error: { reason: "invalid", fields: [{ field: "s", details: "not a number" }] } }

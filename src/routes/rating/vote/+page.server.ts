@@ -41,8 +41,8 @@ export const actions = ({
       const data = await request.formData()
       const maleQuery = data.get("m")
 
-      if (!maleQuery || maleQuery.toString().length < 1) return { success: false, error: { reason: "missing", fields: ["m"] } }
-      if (maleQuery.toString().length < 3) return { success: false, error: { reason: "invalid", fields: [{ field: "m", details: "too short" }] } }
+      if (!maleQuery || maleQuery.toString().trim().length < 1) return { success: false, error: { reason: "missing", fields: ["m"] } }
+      if (maleQuery.toString().trim().length < 3) return { success: false, error: { reason: "invalid", fields: [{ field: "m", details: "too short" }] } }
 
       const searchQuery = "*" + maleQuery.toString() + "*"
 
@@ -65,8 +65,8 @@ export const actions = ({
       const data = await request.formData()
       const femaleQuery = data.get("f")
 
-      if (!femaleQuery || femaleQuery.toString().length < 1) return { success: false, error: { reason: "missing", fields: ["f"] } }
-      if (femaleQuery.toString().length < 3) return { success: false, error: { reason: "invalid", fields: [{ field: "f", details: "too short" }] } }
+      if (!femaleQuery || femaleQuery.toString().trim().length < 1) return { success: false, error: { reason: "missing", fields: ["f"] } }
+      if (femaleQuery.toString().trim().length < 3) return { success: false, error: { reason: "invalid", fields: [{ field: "f", details: "too short" }] } }
 
       const searchQuery = "*" + femaleQuery.toString() + "*"
       const femaleResult = await prisma.femaleStudent.findMany({ where: { fullName: { search: searchQuery } } })
@@ -92,7 +92,7 @@ export const actions = ({
     const maleIdString = data.get("m-id")
     const femaleIdString = data.get("f-id")
 
-    if (!maleIdString || !femaleIdString) return { success: false, error: { reason: "missing", fields: [ "m-id", "f-id" ] } }
+    if (!maleIdString || !femaleIdString || maleIdString.toString().trim().length < 1 || femaleIdString.toString().trim().length < 1) return { success: false, error: { reason: "missing", fields: [ "m-id", "f-id" ] } }
     
     const maleId = parseInt(maleIdString.toString())
     const femaleId = parseInt(femaleIdString.toString())
