@@ -47,6 +47,19 @@ export type RatingVoteFemaleSearch = { results: FemaleStudent[] }
 
 export type RatingVoteSubmit = {}
 
+export type SongsLoad = {
+  page: number
+  songs: SongRequest[]
+}
+
+export type SongsVote = {}
+
+export type SongsVoteLoad = {}
+
+export type SongsVoteSearch = { results: SpotifyTrack[] }
+
+export type SongsVoteSubmit = {}
+
 export type StudentQueryType = "all" | "maleOnly" | "femaleOnly"
 
 export type Auth0User = {
