@@ -38,7 +38,8 @@ export const actions = ({
     try {
   
         const auth0User = await auth0.getProfile(token) as Auth0User
-        const dbUser = await prisma.user.findUniqueOrThrow({ where: { sub: auth0User.sub } })
+        const dbUser = await prisma.user.findUnique({ where: { sub: auth0User.sub } })
+        if (!dbUser) return { success: false, error: { reason: "unauthorized" } }
 
         const votedSongs = await prisma.userSongRequestVote.findMany({ where: { userId: dbUser.id }, include: { request: true } })
         for (const song of votedSongs) {
@@ -47,7 +48,10 @@ export const actions = ({
   
         try {
   
-          await prisma.songRequest.update({ where: { id: songId }, data: { totalVotes: { increment: 1 } } })
+          await prisma.songRequest.update({ where: { id: songId }, data: {
+            totalVotes: { increment: 1 },
+            votedUsers: { create: { userId: dbUser.id }}
+          }})
           return { success: true, data: {} }
   
         }
