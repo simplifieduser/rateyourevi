@@ -148,19 +148,11 @@ export const actions = ({
         songArtist: artistString,
         songAlbum: result.album.name,
         songUrl: result.external_urls.spotify, 
-        votedUsers: {
-          create: {
-            userId: dbUser.id
-          }
-        },
+        votedUsers: { create: { userId: dbUser.id } },
         requestUserId: dbUser.id,
         totalVotes: 1,
       }, update: {
-        votedUsers: {
-          create: {
-            userId: dbUser.id
-          }
-        },
+        votedUsers: { create: { userId: dbUser.id } },
         totalVotes: { increment: 1 }
       }})
 
