@@ -9,11 +9,14 @@ export const load = (async (): ServerResponse<RootLoad> => {
         const males = await prisma.maleStudent.findMany({ orderBy: { totalVotes: "desc" }, take: 10 })
         const females = await prisma.femaleStudent.findMany({ orderBy: { totalVotes: "desc" }, take: 10 })
 
+        const songs = await prisma.songRequest.findMany({ orderBy: { totalVotes: "desc" }, take: 5})
+
         return {
             success: true,
             data: {
                 male: males,
-                female: females
+                female: females,
+                songs: songs
             }
         }
     }

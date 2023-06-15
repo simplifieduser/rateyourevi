@@ -28,6 +28,13 @@
     {/each}
   </ol>
 
+  <h2>Songs</h2>
+  <ol>
+    {#each data.data.songs as song}
+      <li>{song.songName}</li>
+    {/each}
+  </ol>
+
   {:else}
 
     Es ist ein Fehler aufgetreten.
