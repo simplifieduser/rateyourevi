@@ -1,4 +1,4 @@
-import type { FemaleStudent, MaleStudent, User } from "@prisma/client"
+import type { FemaleStudent, MaleStudent, SongRequest, User } from "@prisma/client"
 
 export type Student = {
   id: number,
@@ -66,4 +66,27 @@ export type Auth0User = {
   sub: string
   name: string
   email: string
+}
+
+export type SpotifyTrack = {
+
+  id: string
+  is_playable: boolean
+  is_local: boolean
+
+  name: string
+  album: {
+    name: string
+    images: {
+      url: string
+    }[]
+  }
+  artists: {
+    name: string
+  }[]
+  external_urls: {
+    spotify: string
+  }
+
+
 }
