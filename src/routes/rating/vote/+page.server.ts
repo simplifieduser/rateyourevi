@@ -1,9 +1,10 @@
 import prisma from '$lib/server/prisma.js'
 import type { Auth0User, RatingVoteFemaleSearch, RatingVoteLoad, RatingVoteMaleSearch, RatingVoteSubmit, ServerResponse, Student } from '$lib/types.js'
 import auth0 from '$lib/server/auth0.js'
+import type { Actions, PageServerLoad } from './$types';
 
 
-export const load = async ({ cookies }): ServerResponse<RatingVoteLoad> => {
+export const load = (async ({ cookies }): ServerResponse<RatingVoteLoad> => {
 
   const token = cookies.get("token")
   if (!token) return { success: false, error: { reason: "unauthorized" } }
@@ -29,9 +30,9 @@ export const load = async ({ cookies }): ServerResponse<RatingVoteLoad> => {
     return { success: false, error: { reason: "unauthorized" } }
   }
 
-}
+}) satisfies PageServerLoad
 
-export const actions = {
+export const actions = ({
 
   maleSearch: async ({ request }): ServerResponse<RatingVoteMaleSearch> => {
 
@@ -105,13 +106,23 @@ export const actions = {
       if (!dbUser) return { success: false, error: { reason: "unauthorized" } }
       if (dbUser.hasVoted) return { success: false, error: { reason: "forbidden", details: "already voted" } }
       
-      await prisma.user.update({ where: { sub: auth0User.sub }, data: {
-        hasVoted: true,
-        userVotedMaleId: maleId,
-        userVotedFemaleId: femaleId
-      } })
+      try {
 
-      return { success: true, data: {} }
+        await prisma.maleStudent.update({ where: { id: maleId }, data: { totalVotes: { increment: 1 } } })
+        await prisma.femaleStudent.update({ where: { id: femaleId }, data: { totalVotes: { increment: 1 } } })
+
+        await prisma.user.update({ where: { sub: auth0User.sub }, data: {
+          hasVoted: true,
+          userVotedMaleId: maleId,
+          userVotedFemaleId: femaleId
+        }})
+  
+        return { success: true, data: {} }
+        
+      }
+      catch (error) {
+        return { success: false, error: { reason: "internalError" } }
+      }
   
     }
     catch (error) {
@@ -119,4 +130,4 @@ export const actions = {
     }
 
   }
-}
+}) satisfies Actions
