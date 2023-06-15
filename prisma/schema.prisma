@@ -43,12 +43,15 @@ model User {
 
   hasVoted          Boolean
   userVotedMale     MaleStudent?   @relation(fields: [userVotedMaleId], references: [id])
-  userVotedMaleId   Int?           @unique
+  userVotedMaleId   Int?           
   userVotedFemale   FemaleStudent? @relation(fields: [userVotedFemaleId], references: [id])
-  userVotedFemaleId Int?           @unique
+  userVotedFemaleId Int?           
 
   createdSongRequests SongRequest[]
   votedSongsRequests UserSongRequestVote[]
+
+  @@index([userVotedMaleId])
+  @@index([userVotedFemaleId])
 }
 
 model SongRequest {
@@ -62,7 +65,7 @@ model SongRequest {
   totalVotes    Int
   votedUsers UserSongRequestVote[]
   
-  requestUser   User @relation(fields: [requestUserId], references: [id])
+  requestUser   User @relation(fields: [requestUserId], references: [id], onDelete: Cascade)
   requestUserId Int
 
   @@index([requestUserId])
@@ -70,9 +73,9 @@ model SongRequest {
 
 model UserSongRequestVote {
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId Int
-  request SongRequest @relation(fields: [requestId], references: [id])
+  request SongRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
   requestId Int
 
   @@index([userId])
