@@ -48,17 +48,8 @@
 
     disableInputs = true
 
-    let artistString = ""
-    song.artists.forEach((artist) => {
-      artistString += artist.name + "~"
-    })
-
     const formData = new FormData()
     formData.set("s", song.id)
-    formData.set("s-name", song.name) 
-    formData.set("s-artist", artistString)
-    formData.set("s-album", song.album.name)
-    formData.set("s-url", song.external_urls.spotify)
 
     const response = await fetch("?/submit", {
       method: 'POST',

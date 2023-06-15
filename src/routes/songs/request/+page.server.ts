@@ -38,8 +38,7 @@ export const actions = ({
     const data = await request.formData()
     const songQuery = data.get("s")
 
-    if (!songQuery || songQuery.toString().length < 1) return { success: false, error: { reason: "missing", fields: ["s"] } }
-    if (songQuery.toString().length < 3) return { success: false, error: { reason: "invalid", fields: [{ field: "s", details: "too short" }] } }
+    if (!songQuery || songQuery.toString().trim().length < 1) return { success: false, error: { reason: "missing", fields: ["s"] } }
 
     const authBody = new URLSearchParams({ grant_type: 'client_credentials' })
 
@@ -68,7 +67,7 @@ export const actions = ({
     if (searchResponse.status !== 200)
     {
       console.error(searchResponse.statusText)
-      return { success: false, error: { reason: "invalid", fields: [{ field: "s", details: "does not exist" }] } }
+      return { success: false, error: { reason: "internalError" } }
     }
 
     const result = await searchResponse.json()
@@ -89,12 +88,49 @@ export const actions = ({
 
     const data = await request.formData()
     const songId = data.get("s")
-    const songName = data.get("s-name")
-    const songArtist = data.get("s-artist")
-    const songAlbum = data.get("s-album")
-    const songUrl = data.get("s-url")
 
-    if (!songId || !songName || !songArtist || !songAlbum || !songUrl) return { success: false, error: { reason: "missing", fields: ["s"] } }
+    if (!songId || songId.toString().trim().length < 1) return { success: false, error: { reason: "missing", fields: ["s"] } }
+
+    const authBody = new URLSearchParams({ grant_type: 'client_credentials' })
+
+    const authResponse = await fetch("https://accounts.spotify.com/api/token", {
+      method: "POST",
+      headers: {
+        "Authorization": "Basic " + SPOTIFY_AUTH_HEADER,
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: authBody,
+    })
+
+    if (authResponse.status !== 200) {
+      console.error(await authResponse.text())
+      return { success: false, error: { reason: "internalError" } }
+    }
+    const spotifyToken = await authResponse.json()
+
+    const searchUri = "https://api.spotify.com/v1/tracks/" + songId.toString() + "?market=DE"
+    const searchResponse = await fetch(searchUri, {
+      headers: {
+        "Authorization": spotifyToken.token_type + " " + spotifyToken.access_token
+      }
+    })
+
+    if (searchResponse.status === 400) {
+      return { success: false, error: { reason: "invalid", fields: [{ field: "s", details: "does not exist" }] } }
+    }
+    else if (searchResponse.status !== 200)
+    {
+        console.error(searchResponse.statusText)
+        return { success: false, error: { reason: "internalError" } }
+    }
+
+    const result = await searchResponse.json() as SpotifyTrack
+    if (result.is_local || !result.is_playable) return { success: false, error: { reason: "invalid", fields: [{ field: "s", details: "does not exist" }] } }
+
+    let artistString = ""
+    result.artists.forEach((artist) => {
+      artistString += artist.name + "~"
+    })
 
     try {
 
@@ -107,11 +143,11 @@ export const actions = ({
       }
 
       await prisma.songRequest.upsert({ where: { songId: songId.toString() }, create: {
-        songId: songId.toString(),
-        songName: songName.toString(),
-        songArtist: songArtist.toString(),
-        songAlbum: songAlbum.toString(),
-        songUrl: songUrl.toString(), 
+        songId: result.id,
+        songName: result.name,
+        songArtist: artistString,
+        songAlbum: result.album.name,
+        songUrl: result.external_urls.spotify, 
         votedUsers: {
           create: {
             userId: dbUser.id
