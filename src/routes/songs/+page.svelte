@@ -37,7 +37,7 @@
     const result = deserialize(await response.text()).data as Awaited<ServerResponse<SongsVote>>
 
     if (result.success) {
-
+      voteBannerMessage = "Erfolgreich abgestimmt."
     }
     else {
 
@@ -51,9 +51,9 @@
         voteBannerMessage = "Es ist ein Fehler aufgetreten. Bitte versuche es später nochmal."
       }
 
-      showVoteBanner = true
-
     }
+    
+    showVoteBanner = true
 
   }
 
