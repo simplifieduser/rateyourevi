@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import "../app.scss";
+  import "$lib/app.scss";
 
   let isLoggedIn = false;
 
