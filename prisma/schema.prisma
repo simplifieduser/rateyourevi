@@ -3,7 +3,7 @@
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+  previewFeatures = ["fullTextSearch", "fullTextIndex", "orderByNulls"]
 }
 
 datasource db {
@@ -20,6 +20,7 @@ model MaleStudent {
 
   totalVotes Int
   votedUsers User[]
+  lastTimeVoted DateTime?
 
   @@fulltext(fields: [fullName])
 }
@@ -32,6 +33,7 @@ model FemaleStudent {
 
   totalVotes Int
   votedUsers User[]
+  lastTimeVoted DateTime?
 
   @@fulltext(fields: [fullName])
 }
@@ -56,6 +58,7 @@ model User {
 
 model SongRequest {
   id         Int    @id @default(autoincrement())
+  created    DateTime @default(now())
   songId     String @unique
   songName   String
   songArtist String
