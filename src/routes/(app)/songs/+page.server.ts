@@ -16,6 +16,7 @@ export const load = (async ({ url }): ServerResponse<SongsLoad> => {
 
   }
   catch (error) {
+    console.error(error)
     return { success: false, error: { reason: "internalError" } }
   }
 
@@ -60,7 +61,6 @@ export const actions = ({
         }
 
     } catch (error) {
-      console.error(error)
       return { success: false, error: { reason: "unauthorized" } }
     }
 

@@ -13,7 +13,8 @@ export const load = (async ({ url }): ServerResponse<RatingLoad> => {
     try {
         if (queryType === "maleOnly") {
     
-            const males = await prisma.maleStudent.findMany({ take: 20, skip: page * 20, orderBy: { totalVotes: "desc" } })
+            const males = await prisma.maleStudent.findMany({ take: 20, skip: page * 20, orderBy: { totalVotes: "desc" }})
+
             return {
                 success: true,
                 data: {
@@ -26,7 +27,8 @@ export const load = (async ({ url }): ServerResponse<RatingLoad> => {
         }
         else if (queryType === "femaleOnly") {
 
-            const females = await prisma.femaleStudent.findMany({ take: 20, skip: page * 20, orderBy: { totalVotes: "desc" } })
+            const females = await prisma.femaleStudent.findMany({ take: 20, skip: page * 20, orderBy: { totalVotes: "desc" }})
+
             return {
                 success: true,
                 data: {
