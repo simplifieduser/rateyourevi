@@ -37,7 +37,7 @@
     const result = deserialize(await response.text()).data as Awaited<ServerResponse<SongsAdminRemove>>
 
     if (result.success) {
-      removeBannerMessage = "Erfolgreich abgestimmt."
+      removeBannerMessage = "Erfolgreich gelöscht."
       await invalidateAll()
     }
     else {
