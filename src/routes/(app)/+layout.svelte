@@ -67,11 +67,11 @@
             <div class="content">
               <h1 class="title is-4">RateYourEVI</h1>
               <h2 class="subtitle is-5">Evangelische Schule Neuruppin</h2>
-              <p>2023</p>
+              <p>&copy; 2023</p>
             </div>
           </div>
           <div class="column">
-            <div class="menu is-pulled-right has-text-right">
+            <div id="footer-menu" class="menu has-text-right-tablet">
               <ul class="menu-list">
                 <li><a href="#top">Nach oben</a></li>
                 <li>
@@ -106,5 +106,12 @@
   footer {
     margin-top: 50px;
   }
+
+  @media only screen and (min-width: 768px) {
+    #footer-menu {
+      float: right;
+    }
+  }
+
   
 </style>

@@ -94,11 +94,36 @@
 <main>
 
   {#if form}
+
+  <div class="wrapper">
+
     {#if form.success}
-      Vielen Dank für deinen Beitrag.
+
+    <div class="message is-success">
+      <div class="message-header">
+        Vielen Dank!
+      </div>
+      <div class="message-body">
+        Du hast erfolgreich abgestimmt.<br>Vielen Dank für deinen Beitrag.
+      </div>
+    </div>
+
     {:else}
-      Es ist ein Fehler beim Absenden deines Ratings aufgetreten. Bitte Versuche es erneut.
+      
+    <div class="message is-danger">
+      <div class="message-header">
+        Fehler!
+      </div>
+      <div class="message-body">
+        Es ist ein unbekannter Fehler aufgetreten.<br>Bitte versuche es zu einem späteren Zeitpunkt nochmal.
+      </div>
+    </div>
+
     {/if}
+
+  </div>
+
+
   {:else if data.success}
 
     <form bind:this={formElement} method="post" action="?/submit">
@@ -137,19 +162,44 @@
 
   {:else}
 
+    <div class="wrapper">
+
     {#if data.error.reason === "forbidden"}
       
-      Du hast bereits Abgestimmt. Vielen Dank!
+    <div class="message is-success">
+      <div class="message-header">
+        Vielen Dank!
+      </div>
+      <div class="message-body">
+        Du hast bereits abgestimmt.<br>Vielen Dank für deinen Beitrag.
+      </div>
+    </div>
 
     {:else if data.error.reason === "unauthorized"}
 
-      Bitte <a href="/login?r=rating/vote">logge</a> dich ein um selber abstimmen zu können!
+    <div class="message is-warning">
+      <div class="message-header">
+        Achtung!
+      </div>
+      <div class="message-body">
+        Um selber abstimmen zu können, musst du dich erst einloggen.
+      </div>
+    </div>
 
     {:else}
 
-      Es ist ein Fehler aufgetreten.
+    <div class="message is-danger">
+      <div class="message-header">
+        Fehler!
+      </div>
+      <div class="message-body">
+        Es ist ein unbekannter Fehler aufgetreten.<br>Bitte versuche es zu einem späteren Zeitpunkt nochmal.
+      </div>
+    </div>
 
     {/if}
+
+  </div>
 
   {/if}
 
@@ -177,6 +227,14 @@
 
   .hidden {
     display: none;
+  }
+
+  .wrapper {
+    margin-top: 50px;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
 </style>
