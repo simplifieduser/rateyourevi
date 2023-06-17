@@ -1,31 +1,17 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import type { PageData } from "./$types";
-
-  export let data: PageData
-
-  onMount(() => {
-    console.log(data)
-  })
-
+  export let data: PageData;
 </script>
 
 <main>
-
   <section class="hero is-medium is-primary">
     <div class="hero-body">
       <div class="container">
-        <p class="title is-size-1">
-          RateYourEVI
-        </p>
-        <p class="subtitle is-size-3">
-          Abitur 2023
-        </p>
+        <p class="title is-size-1">RateYourEVI</p>
+        <p class="subtitle is-size-3">Abitur 2023</p>
       </div>
     </div>
   </section>
-  
-  {#if data.success}
 
   <section class="section">
     <div class="container">
@@ -37,27 +23,51 @@
       </div>
     </div>
   </section>
-  
+
   <div class="container">
     <div class="columns">
-        <div class="column">
-          <div class="content box has-background-primary has-text-white">
+      <div class="column">
+        <div class="content box has-background-primary has-text-white">
+          {#if data.success}
             <h1 class="has-text-white">Abi-König</h1>
             <ol>
               {#each data.data.male as student}
                 <li>{student.fullName}</li>
               {/each}
-            </ol> 
-          </div>
+            </ol>
+          {:else}
+            <article class="message is-danger">
+              <div class="message-header">
+                <p>Fehler</p>
+              </div>
+              <div class="message-body">
+                Es ist ein unerwarteter Fehler beim Laden aufgetreten. Bitte
+                versuche es später nochmal.
+              </div>
+            </article>
+          {/if}
+        </div>
       </div>
-        <div class="column">
-          <div class="content box has-background-primary has-text-white">
+      <div class="column">
+        <div class="content box has-background-primary has-text-white">
+          {#if data.success}
             <h1 class="has-text-white">Abi-Königen</h1>
             <ol>
               {#each data.data.female as student}
                 <li>{student.fullName}</li>
               {/each}
             </ol>
+          {:else}
+            <article class="message is-danger">
+              <div class="message-header">
+                <p>Fehler</p>
+              </div>
+              <div class="message-body">
+                Es ist ein unerwarteter Fehler beim Laden aufgetreten. Bitte
+                versuche es später nochmal.
+              </div>
+            </article>
+          {/if}
         </div>
       </div>
     </div>
@@ -77,22 +87,30 @@
     <div class="columns">
       <div class="column is-half">
         <div class="content box has-background-primary has-text-white">
-          <h1 class="title has-text-white">Nächste Songs</h1>
-          <ol>
-            {#each data.data.songs as song}
-              <li>{song.songName}</li>
-            {/each}
-          </ol>
+          {#if data.success}
+            <h1 class="title has-text-white">Song Vorschläge</h1>
+            {#if data.data.songs.length > 0}
+            <ol>
+              {#each data.data.songs as song}
+                <li>{song.songName}</li>
+              {/each}
+            </ol>
+            {:else}
+              Keine weiteren Songs wurden vorgeschlagen.
+            {/if}
+          {:else}
+            <article class="message is-danger">
+              <div class="message-header">
+                <p>Fehler</p>
+              </div>
+              <div class="message-body">
+                Es ist ein unerwarteter Fehler beim Laden aufgetreten. Bitte
+                versuche es später nochmal.
+              </div>
+            </article>
+          {/if}
         </div>
       </div>
     </div>
   </div>
-
-  {:else}
-
-    Es ist ein Fehler aufgetreten.
-
-  {/if}
-
-
 </main>

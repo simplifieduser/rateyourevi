@@ -4,17 +4,11 @@
 
   let isLoggedIn = false;
 
+
   onMount(() => {
     isLoggedIn = document.cookie.includes("token");
   });
 </script>
-
-<svelte:head>
-  <script
-    src="https://kit.fontawesome.com/553baf5296.js"
-    crossorigin="anonymous"
-  ></script>
-</svelte:head>
 
 <div class="wrapper">
   <header>

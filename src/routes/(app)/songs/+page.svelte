@@ -2,15 +2,16 @@
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
   import { deserialize } from "$app/forms"
-    import type { SongRequest } from "@prisma/client";
+  import type { SongRequest } from "@prisma/client";
   import type { PageData } from "./$types";
-    import type { ServerResponse, SongsVote } from "$lib/types";
+  import type { ServerResponse, SongsVote } from "$lib/types";
 
   export let data: PageData
 
   let currentPage = 0
   let showVoteBanner = "none"
   let voteBannerMessage = ""
+  let disableVoteButtons = false
 
   function loadMore() {
 
@@ -24,6 +25,8 @@
   }
 
   async function vote(song: SongRequest) {
+
+    disableVoteButtons = true
 
     const formData = new FormData()
     formData.set("s", song.id.toString())
@@ -56,6 +59,8 @@
 
     }
 
+    disableVoteButtons = false
+
   }
 
 
@@ -67,7 +72,7 @@
     <div class="hero-body">
       <div class="container">
         <p class="title">
-          Song Wünsche
+          Song Vorschläge
         </p>
         <p class="subtitle">
           Abitur 2023
@@ -99,6 +104,7 @@
     </div>
   {/if}
 
+  <div class="table-container">
     <table class="table is-fullwidth is-striped">
       <thead>
         <tr>
@@ -125,14 +131,14 @@
             <td>{song.songAlbum}</td>
             <td>
               <p class="buttons is-pulled-right">
-                <button on:click|preventDefault={ () => vote(song) } class="button">
+                <button on:click|preventDefault={ () => vote(song) } disabled={disableVoteButtons} class="button">
                   <span class="icon is-small">
-                    <i class="fas fa-thumbs-up"></i>
+                    <img alt="Thumbs Up" src="./thumbs-up.svg" width="18px">
                   </span>
                 </button>
                 <a href={song.songUrl} target="_blank" class="button">
                   <span class="icon is-small">
-                    <i class="fas fa-link"></i>
+                    <img alt="Spotify Link" src="./link.svg" width="18px">
                   </span>
                 </a>
               </p>
@@ -141,6 +147,7 @@
         {/each}
       </tbody>
     </table>
+  </div>
     <div class="level">
       <div class="level-item">
         <button on:click={loadMore} class="button">Mehr Laden</button>
@@ -159,5 +166,16 @@
     </article>
   {/if}
 
-
 </main>
+
+<style>
+
+  .buttons {
+    flex-wrap: nowrap;
+  }
+
+  table {
+    min-width: 800px;
+  }
+
+</style>

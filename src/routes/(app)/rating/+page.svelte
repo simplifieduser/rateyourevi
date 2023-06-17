@@ -92,26 +92,27 @@
   </section>
   
   <div class="container">
-
     {#if data.success}
-    <table class="table is-striped is-fullwidth">
-      <thead>
-        <tr>
-          <th>Nr.</th>
-          <th>Votes</th>
-          <th>Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        {#each data.data.students as student}
+    <div class="table-container">
+      <table class="table is-striped is-fullwidth">
+        <thead>
           <tr>
-            <td>{data.data.students.indexOf(student) + currentPage * 20 + 1}.</td>
-            <td>{student.totalVotes}</td>
-            <th>{@html student.fullName}</th>
+            <th>Nr.</th>
+            <th>Votes</th>
+            <th>Name</th>
           </tr>
-        {/each}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {#each data.data.students as student}
+            <tr>
+              <td>{data.data.students.indexOf(student) + currentPage * 20 + 1}.</td>
+              <td>{student.totalVotes}</td>
+              <th>{@html student.fullName}</th>
+            </tr>
+          {/each}
+        </tbody>
+      </table>
+    </div>
 
     <div class="level">
       <div class="level-item">
@@ -129,7 +130,4 @@
     </article>
   {/if}
   </div>
-
-
-
 </main>

@@ -11,7 +11,7 @@
   let inputMale: string
   let inputFemale: string
 
-  let showSubmit = false
+  let disableSubmit = true
 
   let maleResults: MaleStudent[] = []
   let femaleResults: FemaleStudent[] = []
@@ -21,7 +21,7 @@
 
   async function maleSearch() {
 
-    showSubmit = false
+    disableSubmit = true
 
     const formData = new FormData(formElement)
     const query = formData.get("m")
@@ -49,7 +49,7 @@
   
   async function femaleSearch() {
 
-    showSubmit = false
+    disableSubmit = true
 
     const formData = new FormData(formElement)
     const query = formData.get("f")
@@ -78,163 +78,147 @@
   async function selectMale(student: MaleStudent) {
     selectedMale = student.id
     inputMale = student.fullName
-    maleResults = [student]
-    if (selectedFemale) showSubmit = true
+    maleResults = []
+    if (selectedFemale !== -1) disableSubmit = false
   }
 
   async function selectFemale(student: MaleStudent) {
     selectedFemale = student.id
     inputFemale = student.fullName
-    femaleResults = [student]
-    if (selectedMale) showSubmit = true
+    femaleResults = []
+    if (selectedMale !== -1) disableSubmit = false
   }
 
 </script>
 
 <main>
-
-  {#if form}
-
-  <div class="wrapper">
-
-    {#if form.success}
-
-    <div class="message is-success">
-      <div class="message-header">
-        Vielen Dank!
+    <section class="section">
+      <div class="container">
+        <h1 class="title">Abstimmen</h1>
+        <h2 class="subtitle">Lorem ipsum dolor sit amet</h2>
+        {#if data.success}
+          <button on:click={ () => formElement.submit() } disabled={disableSubmit} class="button is-primary">Absenden</button>
+        {/if}
       </div>
-      <div class="message-body">
-        Du hast erfolgreich abgestimmt.<br>Vielen Dank für deinen Beitrag.
+    </section>
+
+    <div class="container">
+
+    {#if form}
+      {#if form.success}
+  
+      <div class="message is-success">
+        <div class="message-header">
+          Vielen Dank!
+        </div>
+        <div class="message-body">
+          Du hast erfolgreich abgestimmt.<br>Vielen Dank für deinen Beitrag.
+        </div>
       </div>
-    </div>
-
-    {:else}
-      
-    <div class="message is-danger">
-      <div class="message-header">
-        Fehler!
+  
+      {:else}
+        
+      <div class="message is-danger">
+        <div class="message-header">
+          Fehler!
+        </div>
+        <div class="message-body">
+          Es ist ein unbekannter Fehler aufgetreten.<br>Bitte versuche es zu einem späteren Zeitpunkt nochmal.
+        </div>
       </div>
-      <div class="message-body">
-        Es ist ein unbekannter Fehler aufgetreten.<br>Bitte versuche es zu einem späteren Zeitpunkt nochmal.
-      </div>
-    </div>
-
-    {/if}
-
-  </div>
-
-
-  {:else if data.success}
-
-    <form bind:this={formElement} method="post" action="?/submit">
-
-      <div class="cards">
-        <div class="card">
-          <input bind:value={inputMale} on:input={ maleSearch } id="m" name="m" type="text" placeholder="King">
-            <div class="results">
+  
+      {/if}
+  
+    {:else if data.success}
+  
+      <form bind:this={formElement} method="post" action="?/submit">
+        <div class="columns">
+          <div class="column">
+            <div class="panel">
+              <p class="panel-heading">König</p>
+              <div class="panel-block">
+                <div class="control">
+                  <input bind:value={inputMale} on:input={ maleSearch } id="m" name="m" type="text" class="input" placeholder="Name">
+                </div>
+              </div>
               {#each maleResults as student}
-                <button on:click|preventDefault={ () => selectMale(student) } class="result">
+              <div class="panel-block">
+                <a href="#top" on:click|preventDefault={ () => selectMale(student) }>
                   {@html student.fullName}
-                </button>
+                </a>
+              </div>
               {/each}
             </div>
-        </div>
-        <div class="card">
-          <input bind:value={inputFemale} on:input={ femaleSearch } id="f" name="f" type="text" placeholder="Queen">
-          <div class="results">
-            {#each femaleResults as student}
-                <button on:click|preventDefault={ () => selectFemale(student) } class="result">
+          </div>
+          <div class="column">
+            <div class="panel">
+              <p class="panel-heading">Königin</p>
+              <div class="panel-block">
+                <div class="control">
+                  <input bind:value={inputFemale} on:input={ femaleSearch } id="f" name="f" type="text" class="input" placeholder="Name">
+                </div>
+              </div>
+              {#each femaleResults as student}
+              <div class="panel-block">
+                <a href="#top" on:click|preventDefault={ () => selectFemale(student) }>
                   {@html student.fullName}
-                </button>
-            {/each}
+                </a>
+              </div>
+              {/each}
           </div>
         </div>
-      </div>
-
-      <input bind:value={selectedMale} type="text" id="m-id" name="m-id" class="hidden">
-      <input bind:value={selectedFemale} type="text" id="f-id" name="f-id" class="hidden">
-
-      {#if showSubmit}
-        <button>Absenden</button>
-      {/if}
-
-    </form>
-
-  {:else}
-
-    <div class="wrapper">
-
-    {#if data.error.reason === "forbidden"}
-      
-    <div class="message is-success">
-      <div class="message-header">
-        Vielen Dank!
-      </div>
-      <div class="message-body">
-        Du hast bereits abgestimmt.<br>Vielen Dank für deinen Beitrag.
-      </div>
-    </div>
-
-    {:else if data.error.reason === "unauthorized"}
-
-    <div class="message is-warning">
-      <div class="message-header">
-        Achtung!
-      </div>
-      <div class="message-body">
-        Um selber abstimmen zu können, musst du dich erst einloggen.
-      </div>
-    </div>
-
-    {:else}
-
-    <div class="message is-danger">
-      <div class="message-header">
-        Fehler!
-      </div>
-      <div class="message-body">
-        Es ist ein unbekannter Fehler aufgetreten.<br>Bitte versuche es zu einem späteren Zeitpunkt nochmal.
-      </div>
-    </div>
-
-    {/if}
-
-  </div>
-
-  {/if}
-
-
   
+        <input bind:value={selectedMale} type="text" id="m-id" name="m-id" class="hidden">
+        <input bind:value={selectedFemale} type="text" id="f-id" name="f-id" class="hidden">
+  
+      </form>
+  
+    {:else}
+  
+      {#if data.error.reason === "forbidden"}
+        
+      <div class="message is-success">
+        <div class="message-header">
+          Vielen Dank!
+        </div>
+        <div class="message-body">
+          Du hast bereits abgestimmt.<br>Vielen Dank für deinen Beitrag.
+        </div>
+      </div>
+  
+      {:else if data.error.reason === "unauthorized"}
+  
+      <div class="message is-warning">
+        <div class="message-header">
+          Achtung!
+        </div>
+        <div class="message-body">
+          Um selber abstimmen zu können, musst du dich erst einloggen.
+        </div>
+      </div>
+  
+      {:else}
+  
+      <div class="message is-danger">
+        <div class="message-header">
+          Fehler!
+        </div>
+        <div class="message-body">
+          Es ist ein unbekannter Fehler aufgetreten.<br>Bitte versuche es zu einem späteren Zeitpunkt nochmal.
+        </div>
+      </div>
+  
+      {/if}
+  
+    {/if}
+  </div>
 
 </main>
 
 <style>
 
-  .cards {
-
-    display: flex;
-    gap: 50px;
-    margin-bottom: 50px;
-
-  }
-
-  .results {
-    margin-top: 10px;
-    gap: 10px;
-    display: flex;
-    flex-direction: column;
-  }
-
   .hidden {
     display: none;
-  }
-
-  .wrapper {
-    margin-top: 50px;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
 </style>
