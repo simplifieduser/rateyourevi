@@ -6,7 +6,8 @@ export type Student = {
   firstName: string,
   lastName: string,
   totalVotes: number,
-  votedUsers: User
+  votedUsers: User,
+  lastTimeVoted: Date | null
 }
 
 export type ServerResponse<T> = Promise<
