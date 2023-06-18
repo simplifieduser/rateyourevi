@@ -7,7 +7,7 @@ export const load = (async ({ url }): ServerResponse<SongsLoad> => {
 
   const pageString = url.searchParams.get("p") || "0"
   let page = parseInt(pageString)
-  if (Number.isNaN(page)) page = 0
+  if (Number.isNaN(page) || page < 0) page = 0
 
   try {
 

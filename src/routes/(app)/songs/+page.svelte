@@ -13,12 +13,22 @@
   let voteBannerMessage = ""
   let disableVoteButtons = false
 
-  function loadMore() {
+  function loadNext() {
 
     const currentPageString = $page.url.searchParams.get("p") || "0"
     currentPage = parseInt(currentPageString)
-    if (Number.isNaN(currentPage)) currentPage = 0
+    if (Number.isNaN(currentPage) || currentPage < 0) currentPage = 0
     currentPage += 1
+    goto("?p=" + currentPage)
+
+  }
+
+  function loadPrevious() {
+
+    const currentPageString = $page.url.searchParams.get("p") || "0"
+    currentPage = parseInt(currentPageString)
+    if (Number.isNaN(currentPage) || currentPage < 1) currentPage = 1
+    currentPage -= 1
 
     goto("?p=" + currentPage)
 
@@ -154,7 +164,18 @@
   </div>
     <div class="level">
       <div class="level-item">
-        <button on:click={loadMore} class="button">Mehr Laden</button>
+        <div class="buttons">
+          <button on:click={loadPrevious} class="button">
+            <span class="icon is-small">
+              <img alt="Weiter" src="/chevron-left.svg" width="12px">
+            </span>
+          </button>
+          <button on:click={loadNext} class="button">
+            <span class="icon is-small">
+              <img alt="Zurück" src="/chevron-right.svg" width="12px">
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   </div>

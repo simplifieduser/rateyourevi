@@ -6,7 +6,7 @@ export const load = (async ({ url }): ServerResponse<RatingLoad> => {
     
     const pageString = url.searchParams.get("p") || "0"
     let page = parseInt(pageString)
-    if (Number.isNaN(page)) page = 0
+    if (Number.isNaN(page) || page < 0) page = 0
 
     const queryType = url.searchParams.get("q") || "all"
 
