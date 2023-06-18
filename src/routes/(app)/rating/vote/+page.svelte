@@ -251,6 +251,22 @@
 
 <style>
 
+  .panel-block {
+    background-color: #0e1111;
+  }
+
+  .panel-block a {
+    color: #fbfefe;
+  }
+
+  .panel-block a:hover {
+    color: #acacac;
+  }
+
+  .input {
+    background-color: #0e1111;
+  }
+
   .hidden {
     display: none;
   }

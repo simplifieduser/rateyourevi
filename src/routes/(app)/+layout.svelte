@@ -41,7 +41,7 @@
             <div class="navbar-item">
               <div class="buttons">
                 {#if isLoggedIn}
-                  <a href="/logout" class="button">
+                  <a href="/logout" id="logout-button" class="button">
                     <strong>Log Out</strong>
                   </a>
                 {:else}
@@ -91,6 +91,10 @@
 
 <style>
 
+  #logout-button {
+    background-color: #0e1111;
+  }
+
   .wrapper {
     display: flex;
     min-height: 100vh;
@@ -111,6 +115,5 @@
       float: right;
     }
   }
-
   
 </style>

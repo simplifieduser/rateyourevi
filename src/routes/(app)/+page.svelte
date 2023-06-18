@@ -31,7 +31,7 @@
   <div class="container">
     <div class="columns">
       <div class="column">
-        <div class="content box has-background-primary has-text-white">
+        <div class="content box">
           {#if data.success}
             <h1 class="has-text-white">Abi-König</h1>
             <ol>
@@ -53,7 +53,7 @@
         </div>
       </div>
       <div class="column">
-        <div class="content box has-background-primary has-text-white">
+        <div class="content box">
           {#if data.success}
             <h1 class="has-text-white">Abi-Königen</h1>
             <ol>
@@ -90,7 +90,7 @@
   <div class="container">
     <div class="columns">
       <div class="column is-half">
-        <div class="content box has-background-primary has-text-white">
+        <div class="content box">
           {#if data.success}
             <h1 class="title has-text-white">Song Vorschläge</h1>
             {#if data.data.songs.length > 0}
@@ -118,3 +118,11 @@
     </div>
   </div>
 </main>
+
+<style>
+
+  .box {
+    background-color: #0e1111;
+  }
+
+</style>

@@ -200,4 +200,21 @@
     width: 100%;
   }
 
+  .panel-block {
+    background-color: #0e1111;
+    color: #acacac;
+  }
+
+  .panel-block a {
+    color: #fbfefe;
+  }
+
+  .panel-block a:hover {
+    color: #acacac;
+  }
+
+  .input {
+    background-color: #0e1111;
+  }
+
 </style>
