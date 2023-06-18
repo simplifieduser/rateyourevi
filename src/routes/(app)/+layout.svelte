@@ -3,11 +3,16 @@
   import "$lib/app.scss";
 
   let isLoggedIn = false;
+  let showMenu = false
 
+  function toggleMenu() {
+    showMenu = showMenu ? false : true
+  }
 
   onMount(() => {
     isLoggedIn = document.cookie.includes("token");
-  });
+  })
+
 </script>
 
 <div class="wrapper">
@@ -16,16 +21,16 @@
       <div class="container">
         <div class="navbar-brand">
           <a class="navbar-item" href="/">
-            <img src="/favicon.png" alt="logo" width="28" height="28" />
+            <img src="/icon.png" alt="logo" width="30" />
           </a>
-          <button class="navbar-burger">
+          <button on:click={toggleMenu} class={showMenu ? "navbar-burger is-active" : "navbar-burger"}>
             <span aria-hidden="true" />
             <span aria-hidden="true" />
             <span aria-hidden="true" />
           </button>
         </div>
   
-        <div class="navbar-menu">
+        <div class={showMenu ? "navbar-menu is-active" : "navbar-menu"}>
           <div class="navbar-start">
             <a href="/" class="navbar-item">Home</a>
             <a href="/rating" class="navbar-item">Rating</a>
