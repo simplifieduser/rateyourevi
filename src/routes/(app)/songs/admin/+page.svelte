@@ -83,11 +83,11 @@
   <div class="container">
 
   {#if showRemoveBanner === "success"}
-    <div class="notification is-success">
+    <div class="notification is-primary">
       {removeBannerMessage}
     </div>
   {:else if showRemoveBanner === "fail"}
-    <div class="notification is-danger">
+    <div class="notification is-primary">
       {removeBannerMessage}
     </div>
   {/if}
@@ -141,7 +141,7 @@
   </div>
 
   {:else}
-    <article class="message is-danger">
+    <article class="message">
       <div class="message-header">
         <p>Fehler</p>
       </div>

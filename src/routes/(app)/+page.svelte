@@ -40,7 +40,7 @@
               {/each}
             </ol>
           {:else}
-            <article class="message is-danger">
+            <article class="message">
               <div class="message-header">
                 <p>Fehler</p>
               </div>
@@ -62,7 +62,7 @@
               {/each}
             </ol>
           {:else}
-            <article class="message is-danger">
+            <article class="message">
               <div class="message-header">
                 <p>Fehler</p>
               </div>
@@ -103,7 +103,7 @@
               Keine weiteren Songs wurden vorgeschlagen.
             {/if}
           {:else}
-            <article class="message is-danger">
+            <article class="message">
               <div class="message-header">
                 <p>Fehler</p>
               </div>

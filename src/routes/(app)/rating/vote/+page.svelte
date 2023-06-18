@@ -112,7 +112,7 @@
     {#if form}
       {#if form.success}
   
-      <div class="message is-success">
+      <div class="message">
         <div class="message-header">
           Vielen Dank!
         </div>
@@ -125,7 +125,7 @@
 
       {#if form.error.reason === "forbidden" && form.error.details === "voting closed"}
 
-      <div class="message is-success">
+      <div class="message">
         <div class="message-header">
           Vielen Dank!
         </div>
@@ -137,7 +137,7 @@
 
       {:else}
 
-        <div class="message is-danger">
+        <div class="message">
           <div class="message-header">
             Fehler!
           </div>
@@ -199,7 +199,7 @@
       {#if data.error.reason === "forbidden"}
 
         {#if data.error.details === "already voted"}
-          <div class="message is-success">
+          <div class="message">
             <div class="message-header">
               Vielen Dank!
             </div>
@@ -208,7 +208,7 @@
             </div>
           </div>
         {:else}
-          <div class="message is-success">
+          <div class="message">
             <div class="message-header">
               Vielen Dank!
             </div>
@@ -222,7 +222,7 @@
   
       {:else if data.error.reason === "unauthorized"}
   
-      <div class="message is-warning">
+      <div class="message">
         <div class="message-header">
           Achtung!
         </div>
@@ -233,7 +233,7 @@
   
       {:else}
   
-      <div class="message is-danger">
+      <div class="message">
         <div class="message-header">
           Fehler!
         </div>

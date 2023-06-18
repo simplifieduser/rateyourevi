@@ -116,11 +116,11 @@
   <div class="container">
 
     {#if showSubmitBanner === "success"}
-      <div class="notification is-success">
+      <div class="notification is-primary">
         {submitBannerMessage}
       </div>
     {:else if showSubmitBanner === "fail"}
-      <div class="notification is-danger">
+      <div class="notification is-primary">
         {submitBannerMessage}
       </div>
     {/if}
@@ -160,7 +160,7 @@
       
       {#if data.error.reason === "unauthorized"}
 
-      <div class="message is-warning">
+      <div class="message">
         <div class="message-header">
           Achtung!
         </div>
@@ -171,7 +171,7 @@
 
       {:else}
         
-      <div class="message is-danger">
+      <div class="message">
         <div class="message-header">
           Fehler!
         </div>

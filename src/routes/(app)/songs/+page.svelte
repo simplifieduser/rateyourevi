@@ -99,11 +99,11 @@
   <div class="container">
 
   {#if showVoteBanner === "success"}
-    <div class="notification is-success">
+    <div class="notification is-primary">
       {voteBannerMessage}
     </div>
   {:else if showVoteBanner === "fail"}
-    <div class="notification is-danger">
+    <div class="notification is-primary">
       {voteBannerMessage}
     </div>
   {/if}
@@ -160,7 +160,7 @@
   </div>
 
   {:else}
-    <article class="message is-danger">
+    <article class="message">
       <div class="message-header">
         <p>Fehler</p>
       </div>

@@ -124,7 +124,7 @@
       </div>
     </div>
   {:else}
-    <article class="message is-danger">
+    <article class="message">
       <div class="message-header">
         <p>Fehler</p>
       </div>
