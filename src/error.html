@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <title>Fehler - %sveltekit.status%</title>
+</head>
+<body>
+    <main>
+      <div class="wrapper">
+        <div class="content">
+          <div class="title">%sveltekit.status% - %sveltekit.error.message%</div>
+          <div class="subtitle">Ein unerwarteter Fehler ist aufgetreten.<br>Bitte versuche es später nochmal und kehre vorerst zur Startseite zurück.</div>
+          <a href="/" class="button is-primary">Zurück</a>
+        </div>
+      </div>
+    </main>
+    
+    <style>
+      .wrapper {
+        width: 100vw;
+        height: 100vh;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+</body>
+</html>
+
