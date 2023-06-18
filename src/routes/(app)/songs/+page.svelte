@@ -137,12 +137,12 @@
               <p class="buttons is-pulled-right">
                 <button on:click|preventDefault={ () => vote(song) } disabled={disableVoteButtons} class="button">
                   <span class="icon is-small">
-                    <img alt="Thumbs Up" src="./thumbs-up.svg" width="18px">
+                    <img alt="Vote" src="/thumbs-up.svg" width="18px">
                   </span>
                 </button>
                 <a href={song.songUrl} target="_blank" class="button">
                   <span class="icon is-small">
-                    <img alt="Spotify Link" src="./link.svg" width="18px">
+                    <img alt="Spotify Link" src="/link.svg" width="18px">
                   </span>
                 </a>
               </p>
