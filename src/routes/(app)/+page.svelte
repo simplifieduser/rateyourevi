@@ -33,7 +33,7 @@
       <div class="column">
         <div class="content box">
           {#if data.success}
-            <h1 class="has-text-white">Abi-König</h1>
+            <h1 class="has-text-white">Abi König</h1>
             <ol>
               {#each data.data.male as student}
                 <li>{student.fullName}</li>
@@ -55,7 +55,7 @@
       <div class="column">
         <div class="content box">
           {#if data.success}
-            <h1 class="has-text-white">Abi-Königen</h1>
+            <h1 class="has-text-white">Abi Königen</h1>
             <ol>
               {#each data.data.female as student}
                 <li>{student.fullName}</li>
