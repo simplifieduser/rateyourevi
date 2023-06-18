@@ -92,6 +92,10 @@
 
 </script>
 
+<svelte:head>
+  <title>RateYourEVI | Abstimmen</title>
+</svelte:head>
+
 <main>
     <section class="section">
       <div class="container">

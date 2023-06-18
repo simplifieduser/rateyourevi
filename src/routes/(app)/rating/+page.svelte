@@ -50,13 +50,17 @@
 
 </script>
 
+<svelte:head>
+  <title>RateYourEVI | Schüler Rating</title>
+</svelte:head>
+
 <main>
 
   <div class="hero is-primary">
     <div class="hero-body">
       <div class="container">
         <p class="title">
-          Schüler-Rating
+          Schüler Rating
         </p>
         <p class="subtitle">
           Abitur 2023

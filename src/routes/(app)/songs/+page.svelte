@@ -66,6 +66,10 @@
 
 </script>
 
+<svelte:head>
+  <title>RateYourEVI | Song Vorschläge</title>
+</svelte:head>
+
 <main>
 
   <div class="hero is-primary">

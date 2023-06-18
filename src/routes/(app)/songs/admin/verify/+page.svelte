@@ -37,6 +37,10 @@
 
 </script>
 
+<svelte:head>
+  <title>RateYourEVI | Admin</title>
+</svelte:head>
+
 <main>
   <form>
     <label>

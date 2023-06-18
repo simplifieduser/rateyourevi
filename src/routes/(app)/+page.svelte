@@ -3,6 +3,10 @@
   export let data: PageData;
 </script>
 
+<svelte:head>
+  <title>RateYourEVI | Home</title>
+</svelte:head>
+
 <main>
   <section class="hero is-medium is-primary">
     <div class="hero-body">

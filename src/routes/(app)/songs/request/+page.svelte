@@ -100,11 +100,15 @@
 
 </script>
 
+<svelte:head>
+  <title>RateYourEVI | Song Vorschlagen</title>
+</svelte:head>
+
 <main>
 
   <section class="section">
     <div class="container">
-      <h1 class="title">Song vorschlagen</h1>
+      <h1 class="title">Song Vorschlagen</h1>
       <h2 class="subtitle">Lorem ipsum dolor sit amet</h2>
     </div>
   </section>

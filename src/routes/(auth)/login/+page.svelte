@@ -4,6 +4,7 @@
   import { WebAuth } from "auth0-js";
   import { onMount } from "svelte";
   import "$lib/app.scss"
+    import Error from "../../+error.svelte";
 
   onMount(() => {
 
@@ -43,6 +44,10 @@
   })
 
 </script>
+
+<svelte:head>
+  <title>RateYourEVI | Login...</title>
+</svelte:head>
 
 <main>
   <div class="wrapper">

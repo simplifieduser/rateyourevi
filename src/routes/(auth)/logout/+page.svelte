@@ -22,6 +22,10 @@
 
 </script>
 
+<svelte:head>
+  <title>RateYourEVI | Logout...</title>
+</svelte:head>
+
 <main>
   <div class="wrapper">
     <div class="content">
