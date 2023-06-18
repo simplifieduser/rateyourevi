@@ -9,8 +9,9 @@
   export let data: PageServerData
 
   let currentPage = 0
-  let showRemoveBanner = false
+  let showRemoveBanner = "none"
   let removeBannerMessage = ""
+  let disableInputs = false
 
   function loadMore() {
 
@@ -25,6 +26,8 @@
 
   async function remove(song: SongRequest) {
 
+    disableInputs = true
+
     const formData = new FormData()
     formData.set("s", song.id.toString())
 
@@ -38,6 +41,7 @@
 
     if (result.success) {
       removeBannerMessage = "Erfolgreich gelöscht."
+      showRemoveBanner = "success"
       await invalidateAll()
     }
     else {
@@ -51,10 +55,12 @@
       else {
         removeBannerMessage = "Es ist ein Fehler aufgetreten. Bitte versuche es später nochmal."
       }
+
+      showRemoveBanner = "fail"
       
     }
-    
-    showRemoveBanner = true
+
+    disableInputs = false
 
   }
 
@@ -66,21 +72,95 @@
 
 <main>
 
-  {#if showRemoveBanner}
-    {removeBannerMessage}
-  {/if}
+  <section class="section">
+    <div class="container">
+      <h1 class="title is-4">Admin Panel</h1>
+      <h2 class="subtitle is-5">Liste aller Song Vorschläge</h2>
+    </div>
+  </section>
 
   {#if data.success}
-    <ol>
-      {#each data.data.songs as song}
-        <li value={data.data.songs.indexOf(song) + currentPage * 20 + 1} >{song.songName} <button on:click|preventDefault={ () => remove(song) }>Löschen</button> </li>
-      {/each}
-    </ol>
+  <div class="container">
 
-  {:else}
-    Es ist ein Fehler aufgetreten!
+  {#if showRemoveBanner === "success"}
+    <div class="notification is-success">
+      {removeBannerMessage}
+    </div>
+  {:else if showRemoveBanner === "fail"}
+    <div class="notification is-danger">
+      {removeBannerMessage}
+    </div>
   {/if}
 
-  <button on:click={loadMore} >Mehr Laden</button>
+  <div class="table-container">
+    <table class="table is-fullwidth is-striped">
+      <thead>
+        <tr>
+          <th>Nr.</th>
+          <th>Votes</th>
+          <th>Track</th>
+          <th>Artists</th>
+          <th>Album</th>
+          <th>Link</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {#each data.data.songs as song}
+          <tr>
+            <td>{data.data.songs.indexOf(song) + currentPage * 20 + 1}.</td>
+            <td>{song.totalVotes}</td>
+            <th>{song.songName}</th>
+            <td>
+              {#each song.songArtist.split("~") as artist, index}
+                {artist}
+                {#if song.songArtist.split("~").length - 1 !== index}<br>{/if}
+              {/each}
+            </td>
+            <td>{song.songAlbum}</td>
+            <td><a href={song.songUrl}>{song.songUrl}</a></td>
+            <td>
+              <p class="buttons is-pulled-right">
+                <button on:click|preventDefault={ () => remove(song) } disabled={disableInputs} class="button">
+                  <span class="icon is-small">
+                    <img alt="Löschen" src="/xmark.svg" width="18px">
+                  </span>
+                </button>
+              </p>
+            </td>
+          </tr>
+        {/each}
+      </tbody>
+    </table>
+  </div>
+    <div class="level">
+      <div class="level-item">
+        <button on:click={loadMore} class="button">Mehr Laden</button>
+      </div>
+    </div>
+  </div>
+
+  {:else}
+    <article class="message is-danger">
+      <div class="message-header">
+        <p>Fehler</p>
+      </div>
+      <div class="message-body">
+        Es ist ein unerwarteter Fehler beim Laden aufgetreten. Bitte versuche es später nochmal.
+      </div>
+    </article>
+  {/if}
 
 </main>
+
+<style>
+
+  .buttons {
+    flex-wrap: nowrap;
+  }
+
+  table {
+    min-width: 1000px;
+  }
+
+</style>
