@@ -2,9 +2,12 @@ import prisma from '$lib/server/prisma.js'
 import type { Auth0User, RatingVoteFemaleSearch, RatingVoteLoad, RatingVoteMaleSearch, RatingVoteSubmit, ServerResponse, Student } from '$lib/types.js'
 import auth0 from '$lib/server/auth0.js'
 import type { Actions, PageServerLoad } from './$types';
+import { VOTING_STATUS } from '$env/static/private';
 
 
 export const load = (async ({ cookies }): ServerResponse<RatingVoteLoad> => {
+
+  if (VOTING_STATUS !== "OPEN") return { success: false, error: { reason: 'forbidden', details: "voting closed" } }
 
   const token = cookies.get("token")
   if (!token) return { success: false, error: { reason: "unauthorized" } }
@@ -36,6 +39,8 @@ export const actions = ({
 
   maleSearch: async ({ request }): ServerResponse<RatingVoteMaleSearch> => {
 
+    if (VOTING_STATUS !== "OPEN") return { success: false, error: { reason: 'forbidden', details: "voting closed" } }
+
     try {
 
       const data = await request.formData()
@@ -60,6 +65,8 @@ export const actions = ({
 
   femaleSearch: async ({ request }): ServerResponse<RatingVoteFemaleSearch> => {
 
+    if (VOTING_STATUS !== "OPEN") return { success: false, error: { reason: 'forbidden', details: "voting closed" } }
+
     try {
 
       const data = await request.formData()
@@ -83,6 +90,8 @@ export const actions = ({
   },
 
   submit: async ({ request, cookies }): ServerResponse<RatingVoteSubmit> => {
+
+    if (VOTING_STATUS !== "OPEN") return { success: false, error: { reason: 'forbidden', details: "voting closed" } }
 
     const token = cookies.get("token")
     if (!token) return { success: false, error: { reason: "unauthorized" } }

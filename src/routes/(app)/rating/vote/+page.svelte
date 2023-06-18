@@ -3,6 +3,7 @@
   import type { FemaleStudent, MaleStudent } from "@prisma/client";
   import type { PageData } from "./$types";
   import type { RatingVoteFemaleSearch, RatingVoteMaleSearch, RatingVoteSubmit, ServerResponse } from "$lib/types";
+    import Error from "../../../+error.svelte";
   
   export let data: PageData
   export let form: Awaited<ServerResponse<RatingVoteSubmit>>
@@ -117,15 +118,31 @@
       </div>
   
       {:else}
-        
-      <div class="message is-danger">
+
+      {#if form.error.reason === "forbidden" && form.error.details === "voting closed"}
+
+      <div class="message is-success">
         <div class="message-header">
-          Fehler!
+          Vielen Dank!
         </div>
         <div class="message-body">
-          Es ist ein unbekannter Fehler aufgetreten.<br>Bitte versuche es zu einem späteren Zeitpunkt nochmal.
+          Das Voting wurde geschlossen und es werden keine weiteren Stimmen mehr aufgenommen.
+          <br>Vielen Dank für deinen Beitrag.
         </div>
       </div>
+
+      {:else}
+
+        <div class="message is-danger">
+          <div class="message-header">
+            Fehler!
+          </div>
+          <div class="message-body">
+            Es ist ein unbekannter Fehler aufgetreten.<br>Bitte versuche es zu einem späteren Zeitpunkt nochmal.
+          </div>
+        </div>
+      
+      {/if}
   
       {/if}
   
@@ -176,15 +193,28 @@
     {:else}
   
       {#if data.error.reason === "forbidden"}
+
+        {#if data.error.details === "already voted"}
+          <div class="message is-success">
+            <div class="message-header">
+              Vielen Dank!
+            </div>
+            <div class="message-body">
+              Du hast bereits abgestimmt.<br>Vielen Dank für deinen Beitrag.
+            </div>
+          </div>
+        {:else}
+          <div class="message is-success">
+            <div class="message-header">
+              Vielen Dank!
+            </div>
+            <div class="message-body">
+              Das Voting wurde geschlossen und es werden keine weiteren Stimmen mehr aufgenommen.
+              <br>Vielen Dank für deinen Beitrag.
+            </div>
+          </div>
+        {/if}
         
-      <div class="message is-success">
-        <div class="message-header">
-          Vielen Dank!
-        </div>
-        <div class="message-body">
-          Du hast bereits abgestimmt.<br>Vielen Dank für deinen Beitrag.
-        </div>
-      </div>
   
       {:else if data.error.reason === "unauthorized"}
   
