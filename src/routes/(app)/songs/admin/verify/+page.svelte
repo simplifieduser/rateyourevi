@@ -46,13 +46,11 @@
           <p class="card-header-title">Admin Panel</p>
         </div>
         <div class="card-content">
-          <div class="content">
-            {@html infoText}
-          </div>
+          {@html infoText}
           <input bind:value={inputPassword} type="text" id="code" name="code" class="input" placeholder="Code">
-        </div>
-        <div class="card-footer">
-          <a href="#top" on:click={saveCode} class="card-footer-item">Prüfen</a>
+          <div>
+            <button on:click={saveCode} class="button is-primary">Prüfen</button>
+          </div>
         </div>
       </div>
       </form>
@@ -60,3 +58,20 @@
   </div>
 
 </main>
+
+<style>
+  .card {
+    margin-top: 50px;
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .input {
+    background-color: #1b1b1b;
+  }
+
+</style>

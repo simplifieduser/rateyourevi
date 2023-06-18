@@ -155,6 +155,10 @@
 
 <style>
 
+  a {
+    text-decoration: underline;
+  }
+
   .buttons {
     flex-wrap: nowrap;
   }
