@@ -2,9 +2,12 @@ import prisma from '$lib/server/prisma.js'
 import type { Auth0User, RatingVoteFemaleSearch, RatingVoteLoad, RatingVoteMaleSearch, RatingVoteSubmit, ServerResponse, Student } from '$lib/types.js'
 import auth0 from '$lib/server/auth0.js'
 import type { Actions, PageServerLoad } from './$types';
+import { VOTING_STATUS } from '$env/static/private';
 
 
 export const load = (async ({ cookies }): ServerResponse<RatingVoteLoad> => {
+
+  if (VOTING_STATUS !== "OPEN") return { success: false, error: { reason: 'forbidden', details: "voting closed" } }
 
   const token = cookies.get("token")
   if (!token) return { success: false, error: { reason: "unauthorized" } }
@@ -36,6 +39,8 @@ export const actions = ({
 
   maleSearch: async ({ request }): ServerResponse<RatingVoteMaleSearch> => {
 
+    if (VOTING_STATUS !== "OPEN") return { success: false, error: { reason: 'forbidden', details: "voting closed" } }
+
     try {
 
       const data = await request.formData()
@@ -46,7 +51,7 @@ export const actions = ({
 
       const searchQuery = "*" + maleQuery.toString() + "*"
 
-      const maleResult = await prisma.maleStudent.findMany({ where: { fullName: { search: searchQuery } } })
+      const maleResult = await prisma.maleStudent.findMany({ where: { fullName: { search: searchQuery } }, orderBy: { lastTimeVoted: { sort: "desc", nulls: "last" } } })
       return { success: true, data: { results: maleResult as Student[] } }
 
     } catch (error) {
@@ -60,6 +65,8 @@ export const actions = ({
 
   femaleSearch: async ({ request }): ServerResponse<RatingVoteFemaleSearch> => {
 
+    if (VOTING_STATUS !== "OPEN") return { success: false, error: { reason: 'forbidden', details: "voting closed" } }
+
     try {
 
       const data = await request.formData()
@@ -69,7 +76,7 @@ export const actions = ({
       if (femaleQuery.toString().trim().length < 3) return { success: false, error: { reason: "invalid", fields: [{ field: "f", details: "too short" }] } }
 
       const searchQuery = "*" + femaleQuery.toString() + "*"
-      const femaleResult = await prisma.femaleStudent.findMany({ where: { fullName: { search: searchQuery } } })
+      const femaleResult = await prisma.femaleStudent.findMany({ where: { fullName: { search: searchQuery } }, orderBy: { lastTimeVoted: { sort: "desc", nulls: "last" } } })
       
       return { success: true, data: { results: femaleResult } }
 
@@ -83,6 +90,8 @@ export const actions = ({
   },
 
   submit: async ({ request, cookies }): ServerResponse<RatingVoteSubmit> => {
+
+    if (VOTING_STATUS !== "OPEN") return { success: false, error: { reason: 'forbidden', details: "voting closed" } }
 
     const token = cookies.get("token")
     if (!token) return { success: false, error: { reason: "unauthorized" } }
@@ -108,8 +117,15 @@ export const actions = ({
       
       try {
 
-        await prisma.maleStudent.update({ where: { id: maleId }, data: { totalVotes: { increment: 1 } } })
-        await prisma.femaleStudent.update({ where: { id: femaleId }, data: { totalVotes: { increment: 1 } } })
+        await prisma.maleStudent.update({ where: { id: maleId }, data: { 
+          totalVotes: { increment: 1 },
+          lastTimeVoted: new Date()
+        }})
+
+        await prisma.femaleStudent.update({ where: { id: femaleId }, data: {
+          totalVotes: { increment: 1 },
+          lastTimeVoted: new Date()
+        }})
 
         await prisma.user.update({ where: { sub: auth0User.sub }, data: {
           hasVoted: true,

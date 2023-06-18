@@ -1,0 +1,26 @@
+/* Variables and mixins declared here will be available in all other SCSS files */ /* https://github.com/jgthms/bulma/issues/1293 */
+$body-overflow-y: auto;
+$scheme-main: #010404;
+$scheme-main-bis: #0e1111;
+$scheme-main-ter: #0e1111;
+$background: #1b1b1b;
+$border: #acacac;
+$primary: #b43218;
+$text: #fbfefe;
+$text-light: #fbfefe;
+$text-dark: #fbfefe;
+$text-strong: #fbfefe;
+$link: #b43218;
+$link-hover: #5e1b0d;
+$button-hover-color: #b43218;
+$button-hover-border-color: #b43218;
+$navbar-background-color: #0e1111;
+$panel-heading-background-color: #b43218;
+$panel-item-border: 1px solid #1b1b1b;
+$message-body-color: #dfdfdf;
+$message-background-color: #5e1b0d;
+$message-header-color: #fbfefe;
+$message-header-background-color: #b43218;
+$card-background-color: #1b1b1b;
+$card-header-background-color: #b43218;
+$card-footer-border-top: solid 1px #2b2b2b;

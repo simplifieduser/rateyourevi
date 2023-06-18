@@ -7,7 +7,7 @@ export const load = (async ({ url }): ServerResponse<SongsLoad> => {
 
   const pageString = url.searchParams.get("p") || "0"
   let page = parseInt(pageString)
-  if (Number.isNaN(page)) page = 0
+  if (Number.isNaN(page) || page < 0) page = 0
 
   try {
 
@@ -16,6 +16,7 @@ export const load = (async ({ url }): ServerResponse<SongsLoad> => {
 
   }
   catch (error) {
+    console.error(error)
     return { success: false, error: { reason: "internalError" } }
   }
 
@@ -60,7 +61,6 @@ export const actions = ({
         }
 
     } catch (error) {
-      console.error(error)
       return { success: false, error: { reason: "unauthorized" } }
     }
 

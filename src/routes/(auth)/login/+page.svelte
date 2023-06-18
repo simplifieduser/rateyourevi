@@ -3,6 +3,8 @@
   import { page } from "$app/stores";
   import { WebAuth } from "auth0-js";
   import { onMount } from "svelte";
+  import "$lib/app.scss"
+    import Error from "../../+error.svelte";
 
   onMount(() => {
 
@@ -43,6 +45,26 @@
 
 </script>
 
+<svelte:head>
+  <title>RateYourEVI | Login...</title>
+</svelte:head>
+
 <main>
-  Redirecting...
+  <div class="wrapper">
+    <div class="content">
+      <div class="title">Weiterleitung...</div>
+      <div class="subtitle">Bitte warten!</div>
+    </div>
+  </div>
 </main>
+
+<style>
+  .wrapper {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
