@@ -29,6 +29,7 @@
   "type": "module",
   "dependencies": {
     "@prisma/client": "^4.15.0",
+    "@vercel/edge-config": "^0.2.1",
     "auth0": "^3.4.0",
     "auth0-js": "^9.21.0"
   },
