@@ -109,7 +109,7 @@
   <section class="section">
     <div class="container">
       <h1 class="title">Song Vorschlagen</h1>
-      <h2 class="subtitle">Lorem ipsum dolor sit amet</h2>
+      <h2 class="subtitle">Schlagt vor, was als nächstes gespielt werden soll.</h2>
     </div>
   </section>
 

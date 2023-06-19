@@ -100,7 +100,7 @@
     <section class="section">
       <div class="container">
         <h1 class="title">Abstimmen</h1>
-        <h2 class="subtitle">Lorem ipsum dolor sit amet</h2>
+        <h2 class="subtitle">Stimmt darüber ab, wer König und Königen wird.</h2>
         {#if data.success}
           <button on:click={ () => formElement.submit() } disabled={disableSubmit} class="button is-primary">Absenden</button>
         {/if}

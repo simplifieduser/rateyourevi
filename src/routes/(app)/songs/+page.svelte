@@ -98,7 +98,7 @@
   <section class="section">
     <div class="container">
       <h1 class="title is-4">Liste aller Song Vorschläge</h1>
-      <h2 class="subtitle is-5">Lorem ipsum dolor sit amet</h2>
+      <h2 class="subtitle is-5">Schlagt vor, was als nächstes gespielt werden soll.</h2>
       <div class="level">
         <a href="/songs/request" class="button is-primary">Neuer Vorschlag</a>
       </div>
