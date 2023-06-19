@@ -159,7 +159,7 @@
               <p class="panel-heading">König</p>
               <div class="panel-block">
                 <div class="control">
-                  <input bind:value={inputMale} on:input={ maleSearch } id="m" name="m" type="text" class="input" placeholder="Name">
+                  <input bind:value={inputMale} on:input={ maleSearch } id="m" name="m" type="text" class="input" placeholder="Name" autocapitalize="words" autocomplete="off" autocorrect="off">
                 </div>
               </div>
               {#each maleResults as student}
@@ -176,7 +176,7 @@
               <p class="panel-heading">Königin</p>
               <div class="panel-block">
                 <div class="control">
-                  <input bind:value={inputFemale} on:input={ femaleSearch } id="f" name="f" type="text" class="input" placeholder="Name">
+                  <input bind:value={inputFemale} on:input={ femaleSearch } id="f" name="f" type="text" class="input" placeholder="Name" autocapitalize="words" autocomplete="off" autocorrect="off">
                 </div>
               </div>
               {#each femaleResults as student}

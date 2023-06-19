@@ -47,7 +47,7 @@
         </div>
         <div class="card-content">
           {@html infoText}
-          <input bind:value={inputPassword} type="text" id="code" name="code" class="input" placeholder="Code">
+          <input bind:value={inputPassword} type="text" inputmode="numeric" id="code" name="code" class="input" placeholder="Code" autocapitalize="off" autocomplete="off" autocorrect="off">
           <div>
             <button on:click={saveCode} class="button is-primary">Prüfen</button>
           </div>
