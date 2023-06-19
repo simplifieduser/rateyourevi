@@ -103,6 +103,8 @@
         <h2 class="subtitle">Stimmt darüber ab, wer König und Königen wird.</h2>
         {#if data.success}
           <button on:click={ () => formElement.submit() } disabled={disableSubmit} class="button is-primary">Absenden</button>
+        {:else if !data.success && data.error.reason === "unauthorized"}
+          <a href="/login?r=/rating/vote" class="button is-primary has-text-weight-bold">Log In</a>
         {/if}
       </div>
     </section>

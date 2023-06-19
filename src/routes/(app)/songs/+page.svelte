@@ -56,7 +56,7 @@
     else {
 
       if (result.error.reason === "unauthorized") {
-        voteBannerMessage = "Bitte logge dich ein, um für Songs abstimmen zu können."
+        voteBannerMessage = "Bitte <a href=\"/login?r=/songs\" style=\"font-weight: 700;\">logge</a> dich ein, um für Songs abstimmen zu können."
       }
       else if (result.error.reason === "forbidden") {
         voteBannerMessage = "Du hast für diesen Song bereits abgestimmt."
@@ -110,11 +110,11 @@
 
   {#if showVoteBanner === "success"}
     <div class="notification is-primary">
-      {voteBannerMessage}
+      {@html voteBannerMessage}
     </div>
   {:else if showVoteBanner === "fail"}
     <div class="notification is-primary">
-      {voteBannerMessage}
+      {@html voteBannerMessage}
     </div>
   {/if}
 

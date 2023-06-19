@@ -110,6 +110,9 @@
     <div class="container">
       <h1 class="title">Song Vorschlagen</h1>
       <h2 class="subtitle">Schlagt vor, was als nächstes gespielt werden soll.</h2>
+      {#if !data.success && data.error.reason === "unauthorized"}
+          <a href="/login?r=/songs/request" class="button is-primary has-text-weight-bold">Log In</a>
+        {/if}
     </div>
   </section>
 
@@ -215,6 +218,11 @@
 
   .input {
     background-color: #0e1111;
+  }
+
+  .disabled {
+    cursor: not-allowed;
+    color: #acacac !important;
   }
 
 </style>
