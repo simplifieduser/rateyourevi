@@ -22,7 +22,7 @@
 
     const formData = new FormData(formElement)
     const query = formData.get("s")
-    if (!query || query.length < 3) {
+    if (!query || query.toString().trim().length < 1) {
       searchResults = []
       return
     }
@@ -130,13 +130,16 @@
   
     {#if data.success}
     
-    <form bind:this={formElement}>
+    <form bind:this={formElement} class="form">
       <div class="panel">
-        <p class="panel-heading">Spotify</p>
+        <p class="panel-heading">Track, Interpret, Album</p>
         <div class="panel-block">
-          <div class="control">
-            <input bind:value={inputSong} on:input={checkInput} disabled={disableInputs} type="text" id="s" name="s" placeholder="Name" class="input" autocapitalize="off" autocomplete="off" autocorrect="off">
-          </div>
+          <p class="control has-icons-left">
+            <input bind:value={inputSong} on:input={checkInput} disabled={disableInputs} type="text" id="s" name="s" placeholder="Suchen" class="input" autocapitalize="off" autocomplete="off" autocorrect="off">
+            <span class="icon is-left">
+              <img alt="Suchen" src="/search.svg" width="18px">
+            </span>
+          </p>
           <button disabled={disableSearchButton} on:click|preventDefault={searchSong} id="search-button" class="button is-primary">Suchen</button>
         </div>
         {#each searchResults as song}
@@ -218,6 +221,10 @@
 
   .input {
     background-color: #0e1111;
+  }
+
+  .input::placeholder {
+    color: #acacac;
   }
 
   .disabled {
