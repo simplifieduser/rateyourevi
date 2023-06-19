@@ -26,7 +26,7 @@
 
     const formData = new FormData(formElement)
     const query = formData.get("m")
-    if (!query || query.length < 3) {
+    if (!query || query.toString().trim().length < 1) {
       maleResults = []
       return
     }
@@ -54,7 +54,7 @@
 
     const formData = new FormData(formElement)
     const query = formData.get("f")
-    if (!query || query.length < 3) {
+    if (!query || query.toString().trim().length < 1) {
       femaleResults = []
       return
     }
@@ -158,10 +158,13 @@
         <div class="columns">
           <div class="column">
             <div class="panel">
-              <p class="panel-heading">König</p>
+              <p class="panel-heading">Name König</p>
               <div class="panel-block">
-                <div class="control">
-                  <input bind:value={inputMale} on:input={ maleSearch } id="m" name="m" type="text" class="input" placeholder="Name" autocapitalize="words" autocomplete="off" autocorrect="off">
+                <div class="control has-icons-left">
+                  <input bind:value={inputMale} on:input={ maleSearch } id="m" name="m" type="text" class="input" placeholder="Suchen" autocapitalize="words" autocomplete="off" autocorrect="off">
+                  <span class="icon is-left">
+                    <img alt="Suchen" src="/search.svg" width="18px">
+                  </span>
                 </div>
               </div>
               {#each maleResults as student}
@@ -175,10 +178,13 @@
           </div>
           <div class="column">
             <div class="panel">
-              <p class="panel-heading">Königin</p>
+              <p class="panel-heading">Name Königin</p>
               <div class="panel-block">
-                <div class="control">
-                  <input bind:value={inputFemale} on:input={ femaleSearch } id="f" name="f" type="text" class="input" placeholder="Name" autocapitalize="words" autocomplete="off" autocorrect="off">
+                <div class="control has-icons-left">
+                  <input bind:value={inputFemale} on:input={ femaleSearch } id="f" name="f" type="text" class="input" placeholder="Suchen" autocapitalize="words" autocomplete="off" autocorrect="off">
+                  <span class="icon is-left">
+                    <img alt="Suchen" src="/search.svg" width="18px">
+                  </span>
                 </div>
               </div>
               {#each femaleResults as student}
@@ -271,6 +277,10 @@
 
   .hidden {
     display: none;
+  }
+
+  .input::placeholder {
+    color: #acacac;
   }
 
 </style>

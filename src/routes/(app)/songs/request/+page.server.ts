@@ -57,7 +57,7 @@ export const actions = ({
     }
     const token = await authResponse.json()
 
-    const searchUri = "https://api.spotify.com/v1/search?q=track%3A" + songQuery.toString() + "&type=track&market=DE&limit=10"
+    const searchUri = "https://api.spotify.com/v1/search?q=" + songQuery.toString() + "&type=track&market=DE&limit=10"
     const searchResponse = await fetch(searchUri, {
       headers: {
         "Authorization": token.token_type + " " + token.access_token
