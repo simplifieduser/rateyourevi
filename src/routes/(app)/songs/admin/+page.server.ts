@@ -1,14 +1,14 @@
-import { ADMIN_CODE } from "$env/static/private"
 import prisma from "$lib/server/prisma"
 import type { ServerResponse, SongsAdminLoad, SongsAdminRemove } from "$lib/types"
 import { redirect } from "@sveltejs/kit"
 import type { Actions, PageServerLoad } from "./$types"
+import { get } from '@vercel/edge-config';
 
 export const load = (async ({ url, cookies }): ServerResponse<SongsAdminLoad> => {
 
   const code = cookies.get("adminCode")
   if (!code) throw redirect(302, "/songs/admin/verify?r=missing")
-  if (code !== ADMIN_CODE) throw redirect(302, "/songs/admin/verify?r=invalid")
+  if (code !== await get("admin-code")) throw redirect(302, "/songs/admin/verify?r=invalid")
 
   const pageString = url.searchParams.get("p") || "0"
   let page = parseInt(pageString)
