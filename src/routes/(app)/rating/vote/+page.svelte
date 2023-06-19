@@ -100,9 +100,11 @@
     <section class="section">
       <div class="container">
         <h1 class="title">Abstimmen</h1>
-        <h2 class="subtitle">Lorem ipsum dolor sit amet</h2>
+        <h2 class="subtitle">Stimmt darüber ab, wer König und Königen wird.</h2>
         {#if data.success}
           <button on:click={ () => formElement.submit() } disabled={disableSubmit} class="button is-primary">Absenden</button>
+        {:else if !data.success && data.error.reason === "unauthorized"}
+          <a href="/login?r=/rating/vote" class="button is-primary has-text-weight-bold">Log In</a>
         {/if}
       </div>
     </section>
@@ -159,7 +161,7 @@
               <p class="panel-heading">König</p>
               <div class="panel-block">
                 <div class="control">
-                  <input bind:value={inputMale} on:input={ maleSearch } id="m" name="m" type="text" class="input" placeholder="Name">
+                  <input bind:value={inputMale} on:input={ maleSearch } id="m" name="m" type="text" class="input" placeholder="Name" autocapitalize="words" autocomplete="off" autocorrect="off">
                 </div>
               </div>
               {#each maleResults as student}
@@ -176,7 +178,7 @@
               <p class="panel-heading">Königin</p>
               <div class="panel-block">
                 <div class="control">
-                  <input bind:value={inputFemale} on:input={ femaleSearch } id="f" name="f" type="text" class="input" placeholder="Name">
+                  <input bind:value={inputFemale} on:input={ femaleSearch } id="f" name="f" type="text" class="input" placeholder="Name" autocapitalize="words" autocomplete="off" autocorrect="off">
                 </div>
               </div>
               {#each femaleResults as student}

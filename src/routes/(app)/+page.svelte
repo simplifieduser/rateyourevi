@@ -20,7 +20,7 @@
   <section class="section">
     <div class="container">
       <h1 class="title">Schüler-Rating</h1>
-      <h2 class="subtitle">Lorem ipsum dolor sit amet</h2>
+      <h2 class="subtitle">Stimmt darüber ab, wer König und Königen wird.</h2>
       <div class="buttons">
         <a href="/rating/vote" class="button is-primary">Abstimmen</a>
         <a href="/rating" class="button">Mehr Anzeigen</a>
@@ -80,7 +80,7 @@
   <section class="section">
     <div class="container">
       <h1 class="title">Songs</h1>
-      <h2 class="subtitle">Lorem ipsum dolor sit amet</h2>
+      <h2 class="subtitle">Schlagt vor, was als nächstes gespielt werden soll.</h2>
       <div class="buttons">
         <a href="/songs/request" class="button is-primary">Vorschlagen</a>
         <a href="/songs" class="button">Mehr Anzeigen</a>

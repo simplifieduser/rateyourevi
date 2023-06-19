@@ -80,7 +80,7 @@
   <section class="section">
     <div class="container">
       <h1 class="title is-4">Liste aller Schüler</h1>
-      <h2 class="subtitle is-5">Lorem ipsum dolor sit amet</h2>
+      <h2 class="subtitle is-5">Stimmt darüber ab, wer König und Königen wird.</h2>
       <div class="level">
         <a href="/rating/vote" class="button is-primary">Abstimmen</a>
         <div class={ showDropdown ? "dropdown is-right is-active" : "dropdown is-right" }>

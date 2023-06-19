@@ -109,7 +109,10 @@
   <section class="section">
     <div class="container">
       <h1 class="title">Song Vorschlagen</h1>
-      <h2 class="subtitle">Lorem ipsum dolor sit amet</h2>
+      <h2 class="subtitle">Schlagt vor, was als nächstes gespielt werden soll.</h2>
+      {#if !data.success && data.error.reason === "unauthorized"}
+          <a href="/login?r=/songs/request" class="button is-primary has-text-weight-bold">Log In</a>
+        {/if}
     </div>
   </section>
 
@@ -132,14 +135,14 @@
         <p class="panel-heading">Spotify</p>
         <div class="panel-block">
           <div class="control">
-            <input bind:value={inputSong} on:input={checkInput} disabled={disableInputs} type="text" id="s" name="s" placeholder="Name" class="input">
+            <input bind:value={inputSong} on:input={checkInput} disabled={disableInputs} type="text" id="s" name="s" placeholder="Name" class="input" autocapitalize="off" autocomplete="off" autocorrect="off">
           </div>
           <button disabled={disableSearchButton} on:click|preventDefault={searchSong} id="search-button" class="button is-primary">Suchen</button>
         </div>
         {#each searchResults as song}
         <div class="panel-block">
             <div class="item">
-              <a href="#top" on:click={() => submitSong(song)} class="has-text-weight-bold">{song.name}</a>
+              <a href="#top" on:click={() => submitSong(song)} class={disableInputs ? "disabled has-text-weight-bold" : "has-text-weight-bold"}>{song.name}</a>
               <div>
                 {#each song.artists as artist, index}
                   {artist.name}
@@ -215,6 +218,11 @@
 
   .input {
     background-color: #0e1111;
+  }
+
+  .disabled {
+    cursor: not-allowed;
+    color: #acacac !important;
   }
 
 </style>

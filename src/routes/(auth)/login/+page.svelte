@@ -4,7 +4,6 @@
   import { WebAuth } from "auth0-js";
   import { onMount } from "svelte";
   import "$lib/app.scss"
-    import Error from "../../+error.svelte";
 
   onMount(() => {
 
@@ -15,7 +14,7 @@
 
     client.parseHash((error, result) => {
 
-      const redirectUrl = $page.url.searchParams.get("redirect") || "/"
+      const redirectUrl = $page.url.searchParams.get("r") || "/"
       const currentUrl = $page.url.origin + "/login/"
 
       if (document.cookie.includes("token")) {
