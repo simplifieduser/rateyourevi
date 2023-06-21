@@ -20,7 +20,7 @@
   <section class="section">
     <div class="container">
       <h1 class="title">Schüler-Rating</h1>
-      <h2 class="subtitle">Stimmt darüber ab, wer König und Königen wird.</h2>
+      <h2 class="subtitle">Stimmt darüber ab, wer König und Königin wird.</h2>
       <div class="buttons">
         <a href="/rating/vote" class="button is-primary">Abstimmen</a>
         <a href="/rating" class="button">Mehr Anzeigen</a>
@@ -55,7 +55,7 @@
       <div class="column">
         <div class="content box">
           {#if data.success}
-            <h1 class="has-text-white">Abi Königen</h1>
+            <h1 class="has-text-white">Abi Königin</h1>
             <ol>
               {#each data.data.female as student}
                 <li>{student.fullName}</li>
