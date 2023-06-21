@@ -122,7 +122,7 @@
     <table class="table is-fullwidth is-striped">
       <thead>
         <tr>
-          <th>Nr.</th>
+          <th>Like</th>
           <th>Votes</th>
           <th>Track</th>
           <th>Artists</th>
@@ -133,7 +133,13 @@
       <tbody>
         {#each data.data.songs as song}
           <tr>
-            <td>{data.data.songs.indexOf(song) + currentPage * 20 + 1}.</td>
+            <td>
+              <button on:click|preventDefault={ () => vote(song) } disabled={disableVoteButtons} class="button">
+                <span class="icon is-small">
+                  <img alt="Vote" src="/thumbs-up.svg" width="18px">
+                </span>
+              </button>
+            </td>
             <td>{song.totalVotes}</td>
             <th>{song.songName}</th>
             <td>
@@ -145,11 +151,6 @@
             <td>{song.songAlbum}</td>
             <td>
               <p class="buttons is-pulled-right">
-                <button on:click|preventDefault={ () => vote(song) } disabled={disableVoteButtons} class="button">
-                  <span class="icon is-small">
-                    <img alt="Vote" src="/thumbs-up.svg" width="18px">
-                  </span>
-                </button>
                 <a href={song.songUrl} target="_blank" class="button">
                   <span class="icon is-small">
                     <img alt="Spotify Link" src="/link.svg" width="18px">
