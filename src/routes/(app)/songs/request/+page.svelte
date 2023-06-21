@@ -132,7 +132,7 @@
     
     <form bind:this={formElement} class="form">
       <div class="panel">
-        <p class="panel-heading">Track, Interpret, Album</p>
+        <p class="panel-heading">Track | Interpret | Album</p>
         <div class="panel-block">
           <p class="control has-icons-left">
             <input bind:value={inputSong} on:input={checkInput} disabled={disableInputs} type="text" id="s" name="s" placeholder="Suchen" class="input" autocapitalize="off" autocomplete="off" autocorrect="off">

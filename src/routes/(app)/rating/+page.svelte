@@ -80,7 +80,7 @@
   <section class="section">
     <div class="container">
       <h1 class="title is-4">Liste aller Schüler</h1>
-      <h2 class="subtitle is-5">Stimmt darüber ab, wer König und Königen wird.</h2>
+      <h2 class="subtitle is-5">Stimmt darüber ab, wer König und Königin wird.</h2>
       <div class="level">
         <a href="/rating/vote" class="button is-primary">Abstimmen</a>
         <div class={ showDropdown ? "dropdown is-right is-active" : "dropdown is-right" }>
@@ -93,8 +93,8 @@
             <div class="dropdown-menu">
               <div class="dropdown-content">
                 <a href="#top" on:click={setAllQuery} class="dropdown-item">Alle</a>
-                <a href="#top" on:click={setMaleQuery} class="dropdown-item">King</a>
-                <a href="#top" on:click={setFemaleQuery} class="dropdown-item">Queen</a>
+                <a href="#top" on:click={setMaleQuery} class="dropdown-item">König</a>
+                <a href="#top" on:click={setFemaleQuery} class="dropdown-item">Königin</a>
               </div>
             </div>
           {/if}
